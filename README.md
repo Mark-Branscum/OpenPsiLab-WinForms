@@ -52,6 +52,9 @@ Next I will be working on adding the following items:
 ### Other Projects
 
 Other projects under development:
+
+![Open Sleep Lab Mask](/Docs/OpenSleepLabMask.jpeg)
+
 - **Open Sleep Lab** - Open source hardware and software for sleep research including:
   - Network enabled sleep mask that can detect rapid eye movement, galvanic skin response, blood oxygen, pulse, etc.
    - Mask can be assembled by end users with readily available, off-the-shelf components that require no soldering and no other electronics or programming experience
