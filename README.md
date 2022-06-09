@@ -10,7 +10,7 @@ Open Psi Lab is free software for personal psi research and practice.  It is rel
 
 Before running Open Psi Lab you will need to have .NET Framework 4.8 or later and the WebView2 library from Microsoft installed on your machine.
 
-If you are unsure which version of .NET you have, there are [several ways you can chack.](https://www.windowscentral.com/how-quickly-check-net-framework-version-windows-10)  The .NET Framework 4.8 Runtime can be downloaded [directly](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net48-web-installer) or from Microsoft's [web page.](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+If you are unsure which version of .NET you have, there are [several ways you can check.](https://www.windowscentral.com/how-quickly-check-net-framework-version-windows-10)  The .NET Framework 4.8 Runtime can be downloaded [directly](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net48-web-installer) or from Microsoft's [web page.](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 
 Microsoft WebView2 can be downloaded from their [web page.](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)  We recommend using their Evergreen Bootstrapper.
 
