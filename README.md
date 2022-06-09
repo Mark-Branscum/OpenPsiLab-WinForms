@@ -3,7 +3,7 @@
 This software will be released soon... 
 
 ![Screenshot All](/Docs/ScreenshotAllLarge.png)
-[[View full resolution]](https://imgur.com/a/G9ufKHH)
+[[Enhance]](https://mark-branscum.github.io/OpenPsiLab-WinForms/Docs/ScreenshotAllLarge.png)
 
 Open Psi Lab is free software for personal psi research and practice.  It is released under the open source [GPLv3 license.](https://www.gnu.org/licenses/gpl-3.0.en.html) Currently it provides utilities for remote viewing practice sessions, associative remote viewing sessions, sidereal time calculations and display of current geomagnetic weather.  This project is designed to run on Windows 7 or later.  Development is underway on versions that will run on MacOS, Linux (including Raspberry Pi) and WebAssembly, as well as mobile versions for Android and iOS.
 
