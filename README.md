@@ -55,7 +55,7 @@ Other projects under development:
 
 ![Open Sleep Lab Mask](/Docs/OpenSleepLabMask.jpeg)
 
-- **Open Sleep Lab** - Open source hardware and software for sleep research including:
+- **Open Sleep Lab (Coming soon...)** - Open source hardware and software for sleep research including:
   - Network enabled sleep mask that can detect rapid eye movement, galvanic skin response, blood oxygen, pulse, etc.
    - Mask can be assembled by end users with readily available, off-the-shelf components that require no soldering and no other electronics or programming experience
   - Open source software to record sleep data and launch specific actions in response to data received from the mask such as playing an audio file or activating electrical relays, useful in lucid dreaming research 
