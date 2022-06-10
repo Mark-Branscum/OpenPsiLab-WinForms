@@ -24,7 +24,7 @@ Once downloaded, unzip the zip file and launch the file named OpenPsiLabWinForms
 
 ![File Extensions](/Docs/FileExtensions.png)
 
-On first run you will be prompted to enter your longitude which is required for sidereal time calculations.  You can get your longitude by finding your location in Google maps, then right clicking.  Your longitude will be the number at the top right of the menu. Be sure to include the minus sign as shown if you live in the western hemisphere. You longitude is require for sidereal time calculation.  This data is used exclusively by the software running on your machine and will not be otherwise collected or shared with anyone.
+On first run you will be prompted to enter your longitude which is used for sidereal time calculations.  You can get your longitude by finding your location in Google maps, then right clicking.  Your longitude will be the number at the top right of the menu. Be sure to include the minus sign as shown if you live in the western hemisphere. This data is used exclusively by the software running on your machine and will not be otherwise collected or shared with anyone.  You can leave it black in which case everything will still work except sidereal time calculations will not be accurate for your geographic location.
 
 ![Longitude](/Docs/Longitude.png)
 
