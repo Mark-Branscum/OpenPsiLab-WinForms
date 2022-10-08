@@ -61,11 +61,5 @@ Other projects under development:
   - Open source software to record sleep data and launch specific actions in response to data received from the mask such as playing an audio file or activating electrical relays, useful in lucid dreaming research 
   - Cloud networking system that allows multiple research subjects to be synced in real time to investigate phenomena such as synchronized dreaming or dream telepathy
 
-### My Dream
 
-I develop free and open source software and hardware for use in the investigation of psi, lucid dreaming and other phenomena.  My experiences with these phenomena have led me to view the world, myself, and others in a more connected, empathetic, and compassionate way.  I want to help others explore psi and provide opportunities for them to have their own meaningful experiences with it.  I want to ensure that tools to help them do so are available for free. 
-
-If you would like to help me in this effort I would be humbly honored and deeply grateful.  If you choose to offer support or participation, I hope that I may always listen to your voice with humility, accept it with gratitude, and share with others these gifts you bring.
-
-[My Patreon Page](https://www.patreon.com/MarkBranscum)
 
