@@ -47,7 +47,6 @@ namespace OpenPsiLabWinForms.Controllers
         {
             if (infoURL.EndsWith("/"))
             {
-                //Strip off trailing slash
                 int len = infoURL.Length;
                 infoURL = infoURL.Substring(0, infoURL.Length - 1);
             }

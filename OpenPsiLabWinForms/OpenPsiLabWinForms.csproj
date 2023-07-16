@@ -60,7 +60,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -364,7 +364,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Docs\GoogleMaps.png" />
-    <Content Include="Resources\SpaceWeather.html">
+    <Content Include="Resources\MainPage.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

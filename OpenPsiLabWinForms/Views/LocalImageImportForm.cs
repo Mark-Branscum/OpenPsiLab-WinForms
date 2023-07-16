@@ -46,7 +46,8 @@ namespace OpenPsiLabWinForms.Views
             imageUtils.SaveImageToImagesFolder(_image);
 
             //Save image to database
-            imageUtils.SaveImageToDatabase(_image, new SQLiteDatabase(oplConfig));
+            imageUtils.SaveImageToDatabase(_image, 
+                new SQLiteDatabase(oplConfiguration: oplConfig));
 
             fileNameTextBox.Text = "";
             nameTextbox.Text = "";
@@ -59,15 +60,15 @@ namespace OpenPsiLabWinForms.Views
         private void fileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = addOpenFileDialog;
-            string dir = Directory.GetCurrentDirectory();
+            //string dir = Directory.GetCurrentDirectory();
             
             dlg.Title = "Image Files";
             string savedPath = oplConfig.AddImagePath;
             if (string.IsNullOrWhiteSpace(savedPath)
                 || !Directory.Exists(savedPath))
             {
-                dlg.InitialDirectory = dir;
-                oplConfig.AddImagePath = dir;
+                dlg.InitialDirectory = oplConfig.DocumentsPath;
+                oplConfig.AddImagePath = oplConfig.DocumentsPath;
             }
             else
             {

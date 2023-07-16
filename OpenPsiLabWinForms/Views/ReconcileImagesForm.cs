@@ -44,7 +44,8 @@ namespace OpenPsiLabWinForms.Views
         {
             ADatabase db = new SQLiteDatabase(oplConfig);
             db.ReconcileDBAndImageFiles();
-            MessageBox.Show("Reconciliation is complete.", "Finished", MessageBoxButtons.OK);
+            MessageBox.Show("Reconciliation is complete.", 
+                "Finished", MessageBoxButtons.OK);
             DialogResult = DialogResult.OK;
             Close();
         }

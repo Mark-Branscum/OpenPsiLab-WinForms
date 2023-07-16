@@ -19,6 +19,7 @@ using OpenPsiLabWinForms.Models;
 using OpenPsiLabWinForms.Properties;
 using OpenPsiLabWinForms.Views.Alerts;
 using System.Text.Json;
+using System.Security.Policy;
 
 namespace OpenPsiLabWinForms.Views
 {
@@ -581,9 +582,8 @@ namespace OpenPsiLabWinForms.Views
         {
             if (rvSession != null)
             {
-                string dir = Directory.GetCurrentDirectory();
-                string slash = Path.DirectorySeparatorChar.ToString();
-                string tempDirectory = $"{dir}{slash}Temp{slash}{rvSession.UUID.ToString()}";
+                string tempDirectory = Path.Combine(oplConfig.AppDataPath, 
+                    "Temp", rvSession.UUID.ToString());
                 try
                 {
                     Directory.Delete(tempDirectory, true);
@@ -712,9 +712,9 @@ namespace OpenPsiLabWinForms.Views
 
                     reset();
                     rvSession = sp;
-                    string slash = Path.DirectorySeparatorChar.ToString();
                     addFilesList.Clear();
-                    string[] filePaths = Directory.GetFiles($"{folderPath}{slash}Files");
+                    string[] filePaths = Directory.GetFiles(Path.Combine(folderPath, "Files"));
+
                     if (filePaths.Length > 0)
                         addFilesButton.BackColor = oplConfig.HighlightColor;
                     foreach (string filePath in filePaths)
@@ -871,7 +871,7 @@ namespace OpenPsiLabWinForms.Views
                     }
                     
                     sessionController.SessionPracticeSaveToFolder(rvSession: exportForm.RvSessionExport,
-                        sessionForm: this, fileList: exportForm.addFilesList, exportFolderPath: folderPath, 
+                        sessionForm: this, fileList: exportForm.addFilesList, exportFolderFullPath: folderPath, 
                         exportConfig: exportForm.exportConfig);
 
                     MessageBox.Show("Export complete.", "Export Complete", MessageBoxButtons.OK);
@@ -1172,7 +1172,7 @@ namespace OpenPsiLabWinForms.Views
                                        || rvSession.Image1 == null)
                 return;
 
-            string filePath = Path.Combine(oplConfig.ImageFolderPath, rvSession.Image1.FileName);
+            string filePath = Path.Combine(oplConfig.ImageFolderFullPath, rvSession.Image1.FileName);
             try
             {
                 System.Diagnostics.Process.Start(filePath);
@@ -1193,7 +1193,7 @@ namespace OpenPsiLabWinForms.Views
                                        || rvSession.Image2 == null)
                 return;
             
-            string filePath = Path.Combine(oplConfig.ImageFolderPath, rvSession.Image2.FileName);
+            string filePath = Path.Combine(oplConfig.ImageFolderFullPath, rvSession.Image2.FileName);
 
             try
             {

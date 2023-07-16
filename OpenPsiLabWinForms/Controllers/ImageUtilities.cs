@@ -89,8 +89,8 @@ namespace OpenPsiLabWinForms.Controllers
 
         public void SaveImageToImagesFolder(ImageAsset imageToSave)
         {
-            string completePath = oplConfig.ImageFolderPath;
-            if (!Directory.Exists(completePath))
+            string completePath = oplConfig.ImageFolderFullPath;
+            if (Directory.Exists(completePath) == false)
             {
                 Directory.CreateDirectory(completePath);
             }
@@ -108,22 +108,24 @@ namespace OpenPsiLabWinForms.Controllers
         public void loadBitmaps(List<ImageAsset> images)
         {
             //Get bitmaps files from disk
-            string slash = Path.DirectorySeparatorChar.ToString();
             foreach (ImageAsset image in images)
             {
-                string path = oplConfig.ImageFolderPath; 
-                if (!path.EndsWith(slash)) path = $"{path}{slash}";
-                string fullPath = $"{path}{image.UUID.ToString()}";
+                string path = oplConfig.ImageFolderFullPath; 
+                //string fullPath = Path.Combine(path, image.UUID.ToString());
                 string[] filePaths = Directory.GetFiles(path, $"{image.UUID}.*");
                 if (filePaths.Length == 0)
                 {
                     //The image file was not found in the images folder
                     //So we set it to inactive in the database and throw an error
-                    ADatabase db = new SQLiteDatabase(oplConfig);
+                    ADatabase db = new SQLiteDatabase(oplConfiguration: oplConfig);
                     db.SetImageActive(image.UUID, false);
                     throw new Exception("Image file not found in Images folder");
                 }
-                image.ImageBitmap = new Bitmap($"{path}{image.UUID.ToString()}{Path.GetExtension(filePaths[0])}");
+
+                string filePathToLoad = Path.Combine(path, 
+                    $"{image.UUID.ToString()}{Path.GetExtension(filePaths[0])}");
+                    // = $"{path}{image.UUID.ToString()}{Path.GetExtension(filePaths[0])}";
+                image.ImageBitmap = new Bitmap(filePathToLoad);
             }
         }
     }

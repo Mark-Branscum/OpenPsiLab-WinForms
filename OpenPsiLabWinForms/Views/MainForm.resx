@@ -120,7 +120,10 @@
   <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="WebView2MissingTextBox.Text" xml:space="preserve">
+    <value>If you are seeing this message it means that the Microsoft WebView2 runtime is not installed on your machine.  Please visit the following web site to download and run the WebView2 installer.  If in doubt about which version to install, simply download the "Evergreen Standalone Installer" x86 version. -----     https://developer.microsoft.com/en-us/microsoft-edge/webview2/</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>81</value>
+    <value>25</value>
   </metadata>
 </root>

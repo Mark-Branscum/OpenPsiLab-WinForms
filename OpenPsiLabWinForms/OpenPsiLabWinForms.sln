@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPsiLabWinForms", "OpenPsiLabWinForms.csproj", "{51D398DC-0ED8-4A47-AE9D-F580E132A836}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OpenPsiLabSetup", "OPLSetup\OPLSetup.vdproj", "{13179725-EAC2-4041-B798-41B09CB86E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{51D398DC-0ED8-4A47-AE9D-F580E132A836}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51D398DC-0ED8-4A47-AE9D-F580E132A836}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51D398DC-0ED8-4A47-AE9D-F580E132A836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13179725-EAC2-4041-B798-41B09CB86E4B}.Debug|Any CPU.ActiveCfg = Debug
+		{13179725-EAC2-4041-B798-41B09CB86E4B}.Debug|Any CPU.Build.0 = Debug
+		{13179725-EAC2-4041-B798-41B09CB86E4B}.Release|Any CPU.ActiveCfg = Release
+		{13179725-EAC2-4041-B798-41B09CB86E4B}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

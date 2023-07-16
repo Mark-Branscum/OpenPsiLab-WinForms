@@ -36,10 +36,10 @@ namespace OpenPsiLabWinForms.Views
             }
             
             //Setup working directory
-            string dir = Directory.GetCurrentDirectory();
+            string docPath = oplConfig.DocumentsPath; 
             if (string.IsNullOrWhiteSpace(oplConfig.AddFilePath))
             {
-                oplConfig.AddFilePath = dir;
+                oplConfig.AddFilePath = docPath;
             }
             fileDataGridView.ClearSelection();
             fileDataGridView.Refresh();
@@ -48,13 +48,13 @@ namespace OpenPsiLabWinForms.Views
         private void addButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            string dir = Directory.GetCurrentDirectory();
+            string docPath = oplConfig.DocumentsPath;
             string savedPath = oplConfig.AddFilePath;
             if (string.IsNullOrWhiteSpace(savedPath)
-                || !Directory.Exists(savedPath))
+                || Directory.Exists(savedPath) == false)
             {
-                dlg.InitialDirectory = dir;
-                oplConfig.AddFilePath = dir;
+                dlg.InitialDirectory = docPath;
+                oplConfig.AddFilePath = docPath;
             }
             else
             {

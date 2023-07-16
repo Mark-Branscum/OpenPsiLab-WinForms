@@ -33,13 +33,12 @@ namespace OpenPsiLabWinForms.Controllers
         }
         
         public string SessionPracticeSaveToFolder(RVSession rvSession,
-            SessionForm sessionForm, List<string> fileList,  string exportFolderPath = "",
+            SessionForm sessionForm, List<string> fileList,  string exportFolderFullPath = "",
             bool includeScreenshot = false, SessionExportConfiguration exportConfig = null)
         {
             string returnString = string.Empty;
 
             //Setup directory
-            string slash = Path.DirectorySeparatorChar.ToString();
             DateTimeOffset dtoUtc = DateTimeOffset.Now.ToUniversalTime();
             int year = dtoUtc.Year;
             string month = dtoUtc.Month.ToString();
@@ -47,25 +46,32 @@ namespace OpenPsiLabWinForms.Controllers
             string day = dtoUtc.Day.ToString();
             if (dtoUtc.Day < 10) day = $"0{day}";
             string destinationFolderPath;
-            if (string.IsNullOrWhiteSpace(exportFolderPath))
+
+            string sessionFileName = 
+                Path.Combine($"{year}-{month}-{day}_",
+                    $"{RemoveSpecialCharacters(rvSession.Name)}",
+                    $"_UUID_{rvSession.UUID}");
+
+            if (string.IsNullOrWhiteSpace(exportFolderFullPath))
             {
-                destinationFolderPath = $"Data{slash}RVSessions" +
-                            $"{slash}{year}-{month}-{day}_" +
-                            $"{RemoveSpecialCharacters(rvSession.Name)}" +
-                            $"_UUID_{rvSession.UUID}";
+                destinationFolderPath = Path.Combine(oplConfig.ExportSessionPath,
+                sessionFileName);
+                if (Directory.Exists(destinationFolderPath) == false)
+                {
+
+                }
                 Directory.CreateDirectory(destinationFolderPath);
+
             }
             else
             {
-                if (!exportFolderPath.EndsWith(slash))
+                destinationFolderPath = Path.Combine(exportFolderFullPath, sessionFileName);
+                if (Directory.Exists(exportFolderFullPath) == false)
                 {
-                    exportFolderPath = exportFolderPath + slash;
+                    Directory.CreateDirectory(exportFolderFullPath);
                 }
-                exportFolderPath = exportFolderPath + $"{year}-{month}-{day}_" +
-                             $"{RemoveSpecialCharacters(rvSession.Name)}" +
-                             $"_UUID_{rvSession.UUID}";
-                Directory.CreateDirectory(exportFolderPath);
-                destinationFolderPath = exportFolderPath;
+                
+                destinationFolderPath = exportFolderFullPath;
             }
 
             if (exportConfig == null || 
@@ -86,10 +92,11 @@ namespace OpenPsiLabWinForms.Controllers
                 {
                     try
                     {
-                        client.DownloadFile(new Uri(overviewURL),
-                            $"{destinationFolderPath}{slash}swx-overview-large-{overviewGUID}.gif");
+                        client.DownloadFile(new Uri(overviewURL), 
+                            Path.Combine("swx-overview-large-{overviewGUID}.gif"));
                         client.DownloadFile(new Uri(noficationURL),
-                            $"{destinationFolderPath}{slash}notifications-in-effect-timeline-{notificationGUID}.png");
+                            Path.Combine(destinationFolderPath, 
+                                $"notifications-in-effect-timeline-{notificationGUID}.png"));
                     }
                     catch (Exception)
                     {
@@ -101,7 +108,7 @@ namespace OpenPsiLabWinForms.Controllers
             if (includeScreenshot || (exportConfig != null && exportConfig.Screenshot == true))
             {
                 rvSession.ScreenshotUUID = rvSession.UUID; 
-                sessionForm.screenshot($"{destinationFolderPath}{slash}", rvSession.UUID.ToString());
+                sessionForm.screenshot(destinationFolderPath, rvSession.UUID.ToString());
             }
             
             //This converter will ensure the session type is saved
@@ -115,25 +122,25 @@ namespace OpenPsiLabWinForms.Controllers
             opts.WriteIndented = true;
 
             string sessionJson = JsonSerializer.Serialize<RVSession>((RVSession)rvSession, opts);
-            string jsonPath = $"{destinationFolderPath}{slash}{RemoveSpecialCharacters(rvSession.Name)}" +
-                              $"_{rvSession.UUID}_SESSION.json";
+            string jsonPath = Path.Combine(destinationFolderPath, 
+                RemoveSpecialCharacters(rvSession.Name), $"_{rvSession.UUID}_SESSION.json");
             File.WriteAllText(jsonPath, sessionJson);
 
             //Save to csv
             string sessionCSV = rvSession.ToCommaSeparatedValues();
-            string csvPath = $"{destinationFolderPath}{slash}{RemoveSpecialCharacters(rvSession.Name)}" +
-                             $"_{rvSession.UUID}.csv";
+            string csvPath = Path.Combine(destinationFolderPath, 
+                               RemoveSpecialCharacters(rvSession.Name), $"_{rvSession.UUID}.csv");
             File.WriteAllText(csvPath, sessionCSV);
 
             //Save to tsv
             string sessionTSV = rvSession.ToTabSeparatedValues();
-            string tsvPath = $"{destinationFolderPath}{slash}{RemoveSpecialCharacters(rvSession.Name)}" +
-                             $"_{rvSession.UUID}.tsv";
+            string tsvPath = Path.Combine(destinationFolderPath, 
+                               RemoveSpecialCharacters(rvSession.Name), $"_{rvSession.UUID}.tsv");
             File.WriteAllText(tsvPath, sessionTSV);
             
             //Save files that the user has added
-            string fileDestination = $"{destinationFolderPath}{slash}Files{slash}";
-            if (!Directory.Exists(fileDestination))
+            string fileDestination = Path.Combine(destinationFolderPath, "Files");
+            if (Directory.Exists(fileDestination) == false)
                 Directory.CreateDirectory(fileDestination);
             try
             {
@@ -193,8 +200,9 @@ namespace OpenPsiLabWinForms.Controllers
             {
                 //Save Image 1 to file system
                 ImageAsset Im1 = rvSession.Image1;
-                string imagePath = $"{destinationFolderPath}{slash}Image1" +
-                                 $"_{rvSession.UUID}.{imageUtils.GetName(Im1.ImageFileFormat)}";
+                string imagePath = Path.Combine(destinationFolderPath, 
+                    "Image1_", rvSession.UUID.ToString(), ".",
+                    imageUtils.GetName(Im1.ImageFileFormat));
 
                 Im1.ImageBitmap.Save(imagePath, Im1.ImageFileFormat);
             }
@@ -202,8 +210,9 @@ namespace OpenPsiLabWinForms.Controllers
             {
                 //Save Image 2 to file system
                 ImageAsset Im2 = rvSession.Image2;
-                 string imagePath = $"{destinationFolderPath}{slash}Image2" +
-                                   $"_{rvSession.UUID}.{imageUtils.GetName(Im2.ImageFileFormat)}";
+                string imagePath = Path.Combine(destinationFolderPath, 
+                     "Image2_", rvSession.UUID.ToString(), ".", 
+                     imageUtils.GetName(Im2.ImageFileFormat));
 
                 Im2.ImageBitmap.Save(imagePath, Im2.ImageFileFormat);
             }
@@ -214,8 +223,8 @@ namespace OpenPsiLabWinForms.Controllers
                 JsonSerializerOptions jOpts = new JsonSerializerOptions();
                 jOpts.WriteIndented = true;
                 string exportJson = JsonSerializer.Serialize<SessionExportConfiguration>(exportConfig, jOpts);
-                string exportConfigPath = $"{destinationFolderPath}{slash}ExportConfig" +
-                                 $"_{rvSession.UUID}.json";
+                string exportConfigPath = Path.Combine(destinationFolderPath, 
+                    "ExportConfig_", rvSession.UUID.ToString(), ".json");
                 File.WriteAllText(exportConfigPath, exportJson);
             }
             return returnString;
@@ -272,7 +281,6 @@ namespace OpenPsiLabWinForms.Controllers
                         Converters ={
                             new JsonStringEnumConverter( JsonNamingPolicy.CamelCase)
                         },
-
                     };
                     sp = JsonSerializer.Deserialize<RVSession>(sessionJson, options);
                     if (!string.IsNullOrWhiteSpace(image1Path))

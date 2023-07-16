@@ -26,21 +26,6 @@ namespace OpenPsiLabWinForms.DataSources
             Insert,
             Update
         }
-        public string DatabasePath
-        {
-            get
-            {
-                string slash = Path.DirectorySeparatorChar.ToString();
-                if (string.IsNullOrWhiteSpace(oplConfig.SQLiteDatabasePath))
-                {
-                    return $"Database{slash}OpenPsiLabData.db";
-                }
-                else
-                {
-                    return oplConfig.SQLiteDatabasePath;
-                }
-            }
-        }
         public OPLConfiguration oplConfig { get; set; }
         private ImageUtilities imageUtils;
 
@@ -53,13 +38,18 @@ namespace OpenPsiLabWinForms.DataSources
 
         public override void Initialize()
         {
-            string slash = Path.DirectorySeparatorChar.ToString();
-            if (!File.Exists(oplConfig.SQLiteDatabasePath))
+            if (!File.Exists(oplConfig.SQLiteDatabaseFullPath))
             {
-                if (!Directory.Exists(oplConfig.SQLiteDatabasePath))
-                    Directory.CreateDirectory(Path.GetDirectoryName(oplConfig.SQLiteDatabasePath));
-                File.Copy($"Resources{slash}OpenPsiLabDataTemplate.db",
-                    oplConfig.SQLiteDatabasePath);
+                //Database path in config should be the name of the RELATIVE folder
+                //and the name of the database file.  That way it can be combined with
+                //whatever the appDataPath might be.
+                if (!Directory.Exists(oplConfig.SQLiteDatabaseFullPath))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(oplConfig.SQLiteDatabaseFullPath));
+                    string sourceResourcesPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources");
+                    File.Copy(sourceFileName: Path.Combine(sourceResourcesPath, "OpenPsiLabDataTemplate.db"),
+                        destFileName: Path.Combine(oplConfig.AppDataPath, oplConfig.SQLiteDatabaseFullPath));
+                }
             }
         }
 
@@ -70,7 +60,8 @@ namespace OpenPsiLabWinForms.DataSources
 
             try
             {
-                using (SqliteConnection connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (SqliteConnection connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
 
@@ -92,7 +83,8 @@ namespace OpenPsiLabWinForms.DataSources
         {
             try
             {
-                using (SqliteConnection connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (SqliteConnection connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
 
@@ -126,7 +118,7 @@ namespace OpenPsiLabWinForms.DataSources
                 if (ia.UUID == null)
                     imageAsset.UUID = Guid.NewGuid();
                 Guid uuid = ia.UUID;
-                using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (var connection = new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
                     using (var command = connection.CreateCommand())
@@ -199,7 +191,7 @@ namespace OpenPsiLabWinForms.DataSources
                 }
             }
 
-            using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+            using (var connection = new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
             {
                 connection.Open();
                 using (var command = connection.CreateCommand())
@@ -303,7 +295,8 @@ namespace OpenPsiLabWinForms.DataSources
         {
             try
             {
-                using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (var connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
 
@@ -445,7 +438,8 @@ namespace OpenPsiLabWinForms.DataSources
         {
             try
             {
-                using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (var connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
 
@@ -470,7 +464,8 @@ namespace OpenPsiLabWinForms.DataSources
         {
             try
             {
-                using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (var connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
 
@@ -574,7 +569,7 @@ namespace OpenPsiLabWinForms.DataSources
             List<Guid> imageGuids = ImageUUIDsGetAll();
             
             //Get all of the files
-            string path = oplConfig.ImageFolderPath;
+            string path = oplConfig.ImageFolderFullPath;
             string[] filePaths = Directory.GetFiles(path);
 
             //Get the guids from DB
@@ -582,7 +577,8 @@ namespace OpenPsiLabWinForms.DataSources
             {
                 string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
                 string fileNameWithExtension = Path.GetFileName(filePath);
-                using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (var connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     List<ImageAsset> dbImages = null;
                     try
@@ -630,7 +626,7 @@ namespace OpenPsiLabWinForms.DataSources
             //List<Guid> imageGuids = ImageUUIDsGetAll();
 
             //Get all of the files
-            string path = oplConfig.ImageFolderPath;
+            string path = oplConfig.ImageFolderFullPath;
             string[] filePaths = Directory.GetFiles(path);
 
             //Get the images from DB
@@ -689,7 +685,8 @@ namespace OpenPsiLabWinForms.DataSources
                 else
                     insertType = "update";
 
-                using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (var connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
 
@@ -732,7 +729,8 @@ namespace OpenPsiLabWinForms.DataSources
                 else
                     insertType = "update";
 
-                using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+                using (var connection = 
+                       new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
                 {
                     connection.Open();
 
@@ -769,7 +767,8 @@ namespace OpenPsiLabWinForms.DataSources
         {
             KeyValuePair<string, string> returnKeyValue;
 
-            using (var connection = new SqliteConnection($"Data Source={DatabasePath}"))
+            using (var connection = 
+                   new SqliteConnection($"Data Source={this.oplConfig.SQLiteDatabaseFullPath}"))
             {
                 connection.Open();
                 using (var command = connection.CreateCommand())

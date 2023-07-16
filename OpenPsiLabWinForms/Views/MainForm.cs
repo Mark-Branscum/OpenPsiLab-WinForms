@@ -29,16 +29,17 @@ namespace OpenPsiLabWinForms
             oplConfig = oplConfiguration;
 
             //Display space weather
-            string curDir = Directory.GetCurrentDirectory();
-            Uri url = new Uri(String.Format("file:///{0}/Resources/SpaceWeather.html", curDir));
+            //string curDir = Directory.GetCurrentDirectory();
+            Uri url = new Uri(Path.Combine(oplConfig.DocumentsPath, "Resources", "MainPage.html"));
+
             spaceWeatherwebView2.Source = url;
             
             //Ensure that longitude is configured
-            string longitudeString = oplConfig.Longitude;
             SiderealTimeUtilities sideUtils = new SiderealTimeUtilities();
             double? longitude = null;
             try
             {
+                string longitudeString = oplConfig.Longitude;
                 longitude = double.Parse(longitudeString);
             }
             catch (Exception)
@@ -58,6 +59,7 @@ namespace OpenPsiLabWinForms
                         try
                         {
                             longitude = double.Parse(oplConfig.Longitude);
+                            oplConfig.Longitude = longitude.ToString();
                         }
                         catch (Exception)
                         {
@@ -75,24 +77,23 @@ namespace OpenPsiLabWinForms
             spaceWeatherwebView2.Select();
             Refresh();
 
-            //Setup data folders for sessions and images
-            string slash = Path.DirectorySeparatorChar.ToString();
-            string folderPath = $"Data{slash}RVSessions";
-            if (Directory.Exists(folderPath) == false)
-                Directory.CreateDirectory(folderPath);
-            folderPath = oplConfig.ImageFolderPath;
-            if (Directory.Exists(folderPath) == false)
-                Directory.CreateDirectory(folderPath);
+            //Display splash screen
+            //SplashForm splash = new SplashForm(oplConfig);
+            //if (oplConfig.SupressSplashScreen == false)
+            //    splash.ShowDialog();
+        }
 
+        private void checkForUpdates()
+        {
             //Check for updates
             using (WebClient client = new WebClient())
             {
                 try
                 {
-                    string latestVersion = 
+                    string latestVersion =
                         client.DownloadString(
                             "https://mark-branscum.github.io/OpenPsiLab-WinForms/LatestVersion.txt");
-                    string [] latestdigits = latestVersion.Split('.');
+                    string[] latestdigits = latestVersion.Split('.');
                     SQLiteDatabase db = new SQLiteDatabase(oplConfig);
                     KeyValuePair<string, string> installedVersion = (KeyValuePair<string, string>)db.AdminKeyValueGet("ProgramVersion");
                     string[] installtedDigits = installedVersion.Value.Split('.');
@@ -107,7 +108,7 @@ namespace OpenPsiLabWinForms
                     if (needsUpdate == true)
                     {
                         DialogResult dlg = MessageBox.Show("An update is available.  " +
-                            "Would you like to download the update?", "Update Available",
+                                                           "Would you like to download the update?", "Update Available",
                             MessageBoxButtons.YesNo);
                         if (dlg == DialogResult.Yes)
                         {
@@ -115,8 +116,6 @@ namespace OpenPsiLabWinForms
                             wf.ShowDialog();
                         }
                     }
-
-                    
                 }
                 catch (Exception)
                 {
@@ -124,10 +123,6 @@ namespace OpenPsiLabWinForms
                 }
             }
 
-            //Display splash screen
-            //SplashForm splash = new SplashForm(oplConfig);
-            //if (oplConfig.SupressSplashScreen == false)
-            //    splash.ShowDialog();
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -166,14 +161,13 @@ namespace OpenPsiLabWinForms
 
         private void imagesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string folderPath = oplConfig.ImageFolderPath;
+            string folderPath = oplConfig.ImageFolderFullPath;
             FolderUtilities.OpenFolder(folderPath);
         }
 
         private void rVSessionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string slash = Path.DirectorySeparatorChar.ToString();
-            string folderPath = $"Data{slash}RVSessions";
+            string folderPath = oplConfig.LoadSessionPath; 
             FolderUtilities.OpenFolder(folderPath);
         }
 
@@ -199,6 +193,13 @@ namespace OpenPsiLabWinForms
         {
             SideralTimeForm sideTimeForm = new SideralTimeForm(oplConfig);
             sideTimeForm.Show();
+        }
+
+        private void imagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            localImageToolStripMenuItem_Click(sender: sender, e: e);
+            //LocalImageImportForm localForm = new LocalImageImportForm(oplConfig);
+            //localForm.Show();
         }
     }
 }

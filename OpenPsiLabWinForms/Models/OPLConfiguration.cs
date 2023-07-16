@@ -12,6 +12,35 @@ namespace OpenPsiLabWinForms.Models
 {
     public class OPLConfiguration
     {
+        private string _appDataPath = "";
+        public string AppDataPath
+        {
+            get
+            {
+                return _appDataPath;
+            }
+            set
+            {
+                _appDataPath = value;
+                Save();
+            }
+        }
+
+        public string _documentsPath = "";
+
+        public string DocumentsPath
+        {
+            get
+            {
+                return _documentsPath;
+            }
+            set
+            {
+                _documentsPath = value;
+                Save();
+            }
+        }
+
         private string _loadSessionPath;
         public string LoadSessionPath
         {
@@ -54,16 +83,16 @@ namespace OpenPsiLabWinForms.Models
             }
         }
 
-        private string _imageFolderPath;
-        public string ImageFolderPath
+        private string _imageFolderFullPath;
+        public string ImageFolderFullPath
         {
             get
             {
-                return _imageFolderPath;
+                return _imageFolderFullPath;
             }
             set
             {
-                _imageFolderPath = value;
+                _imageFolderFullPath = value;
                 Save();
             }
         }
@@ -95,16 +124,16 @@ namespace OpenPsiLabWinForms.Models
                 Save();
             }
         }
-        private string _sqlLiteDatabasePath;
-        public string SQLiteDatabasePath
+        private string _sqlLiteDatabaseFullPath;
+        public string SQLiteDatabaseFullPath
         {
             get
             {
-                return _sqlLiteDatabasePath;
+                return _sqlLiteDatabaseFullPath;
             }
             set
             {
-                _sqlLiteDatabasePath = value;
+                _sqlLiteDatabaseFullPath = value;
                 Save();
             }
         }
@@ -193,26 +222,53 @@ namespace OpenPsiLabWinForms.Models
             }
         }
 
-
+        private bool _installOrUpdateConfigured = false;
+        public bool InstallOrUpdateConfigured
+        {
+            get
+            {
+                return _installOrUpdateConfigured;
+            }
+            set
+            {
+                _installOrUpdateConfigured = value;
+            }
+        }
+        
         public event EventHandler<CustomEventArgs> RaisePropertyChangedEvent;
 
-        public void InitializeNewConfig()
+        public void InitializeNewConfig(string appDataPath, string documentsPath)
         {
-           
-            string currentDir = Directory.GetCurrentDirectory();
-            //string slash = Path.DirectorySeparatorChar.ToString();
-            ImageFolderPath = Path.Combine(currentDir, "Images");
-            if (!Directory.Exists(ImageFolderPath))
-                Directory.CreateDirectory(ImageFolderPath);
-            SQLiteDatabasePath = Path.Combine(currentDir,
-                "Database", "OpenPsiLabData.db");
+
+            //ImageFolderFullPath = "";
+            ImageFolderFullPath = Path.Combine(documentsPath, "Images");  //"Images";
+            //if (Directory.Exists(ImageFolderFullPath) == false)
+            //    Directory.CreateDirectory(ImageFolderFullPath);
+            
+            SQLiteDatabaseFullPath = Path.Combine(appDataPath, "Database", "OpenPsiLabData.db");
+            string dbDirectory = Path.GetDirectoryName(SQLiteDatabaseFullPath);
+            if (Directory.Exists(dbDirectory) == false)
+                Directory.CreateDirectory(dbDirectory);
+
+            LoadSessionPath = Path.Combine(documentsPath, "RVSessions");
+            if (Directory.Exists(LoadSessionPath) == false)
+                Directory.CreateDirectory(LoadSessionPath);
+
+            ExportSessionPath = Path.Combine(documentsPath, "RVSessions");
+            if (Directory.Exists(ExportSessionPath) == false)
+                Directory.CreateDirectory(ExportSessionPath);
+
+            AddImagePath = Path.Combine(documentsPath);
+            if (Directory.Exists(AddImagePath) == false)
+                Directory.CreateDirectory(AddImagePath);
+
+            AddFilePath = Path.Combine(documentsPath);
+            if (Directory.Exists(AddFilePath) == false)
+                Directory.CreateDirectory(AddFilePath);
+            
             RNGSerialPortName = "COM1";
             RandomnessSource = "Random.org";
-            AddFilePath = currentDir;
-            AddImagePath = currentDir;
-            LoadSessionPath = currentDir;
-            ExportSessionPath = currentDir;
-
+          
             SessionExportConfiguration sec = new SessionExportConfiguration();
             sec.TargetIdentifier = true;
             sec.NeitherImage = true;
@@ -242,7 +298,16 @@ namespace OpenPsiLabWinForms.Models
             };
             opts.WriteIndented = true;
             string json = JsonSerializer.Serialize(this, opts);
-            File.WriteAllText("OPLConfig.json", json);
+            string configFilePath = Path.Combine(appDataPath, "OPLConfig.json");
+            if (File.Exists(configFilePath) == false)
+            {
+                FileStream fs = File.Create(configFilePath);
+                fs.Close();
+            }
+            File.WriteAllText(configFilePath, json);
+
+            this.AppDataPath = appDataPath;
+            this.DocumentsPath = documentsPath;
         }
 
         public void OnRaisePropertyChangedEvent(CustomEventArgs e)
@@ -262,8 +327,7 @@ namespace OpenPsiLabWinForms.Models
                 raiseEvent(null, e);
             }
         }
-
-
+        
         public void Save()
         {
             JsonSerializerOptions opts = new JsonSerializerOptions()
@@ -274,7 +338,7 @@ namespace OpenPsiLabWinForms.Models
             };
             opts.WriteIndented = true;
             string json = JsonSerializer.Serialize(this, opts);
-            File.WriteAllText("OPLConfig.json", json);
+            File.WriteAllText(Path.Combine(this.AppDataPath, "OPLConfig.json"), json);
         }
     }
 
