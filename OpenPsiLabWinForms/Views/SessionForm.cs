@@ -524,7 +524,8 @@ namespace OpenPsiLabWinForms.Views
                     Refresh();
                 }
 
-                bitmap.Save($"{filePath}SessionScreenShot-{uuid}.jpg", ImageFormat.Jpeg);
+                string savePath = Path.Combine(filePath, $"SessionScreenShot-{uuid}.jpg");
+                bitmap.Save(savePath, ImageFormat.Jpeg);
             }
         }
 

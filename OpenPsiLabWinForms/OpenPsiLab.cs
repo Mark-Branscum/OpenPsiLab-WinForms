@@ -61,6 +61,8 @@ namespace OpenPsiLabWinForms
                     UpdateCheckProgramVersion(oplConfig: oplConfig);
 
                     SetupSpaceWeatherPage(oplConfig: oplConfig);
+
+                    oplConfig.InstallOrUpdateConfigured = true;
                 }
                 
                 //Run the application
@@ -130,26 +132,9 @@ namespace OpenPsiLabWinForms
                 if (Directory.Exists(imagesPath) == false)
                 {
                     Directory.CreateDirectory(imagesPath);
-                    InitializeDefaultImageFiles();
+                    InitializeDefaultImageFiles(oplConfig: oplConfig);
                 }
             }
-            
-            //Copy the images from the program folder to the user's Images folder
-            if (oplConfig.InstallOrUpdateConfigured == false)
-            {
-                string imageSourceFolder = Path.Combine(
-                    Directory.GetCurrentDirectory(), "Images");
-                string[] imageFullPaths = Directory.GetFiles(imageSourceFolder);
-                foreach (string imageFullPath in imageFullPaths)
-                {
-                    string imageFileName = Path.GetFileName(imageFullPath);
-                    string imageDestinationPath =
-                        Path.Combine(oplConfig.ImageFolderFullPath, imageFileName);
-                    File.Copy(imageFullPath, imageDestinationPath);
-                }
-                oplConfig.InstallOrUpdateConfigured = true;
-            }
-            
         }
 
         private static void SetupSpaceWeatherPage(OPLConfiguration oplConfig)
@@ -289,8 +274,23 @@ namespace OpenPsiLabWinForms
             return oplConf;
         }
 
-        private static void InitializeDefaultImageFiles()
+        private static void InitializeDefaultImageFiles(OPLConfiguration oplConfig)
         {
+            //Copy the images from the program folder to the user's Images folder
+            if (oplConfig.InstallOrUpdateConfigured == false)
+            {
+                string imageSourceFolder = Path.Combine(
+                    Directory.GetCurrentDirectory(), "Images");
+                string[] imageFullPaths = Directory.GetFiles(imageSourceFolder);
+                foreach (string imageFullPath in imageFullPaths)
+                {
+                    string imageFileName = Path.GetFileName(imageFullPath);
+                    string imageDestinationPath =
+                        Path.Combine(oplConfig.ImageFolderFullPath, imageFileName);
+                    File.Copy(imageFullPath, imageDestinationPath);
+                }
+                oplConfig.InstallOrUpdateConfigured = true;
+            }
 
         }
 

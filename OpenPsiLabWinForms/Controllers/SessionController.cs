@@ -47,37 +47,45 @@ namespace OpenPsiLabWinForms.Controllers
             if (dtoUtc.Day < 10) day = $"0{day}";
             string destinationFolderPath;
 
-            string sessionFileName = 
-                Path.Combine($"{year}-{month}-{day}_",
-                    $"{RemoveSpecialCharacters(rvSession.Name)}",
-                    $"_UUID_{rvSession.UUID}");
+            string sessionFolderName;
+            if (string.IsNullOrWhiteSpace(rvSession.Name))
+            {
+                sessionFolderName = $"{year}-{month}-{day}_" +
+                    "BlankSessionName" +
+                    $"_UUID_{rvSession.UUID}";
+            }
+            else
+            {
+                sessionFolderName = $"{year}-{month}-{day}_" +
+                    $"{RemoveSpecialCharacters(rvSession.Name)}" +
+                    $"_UUID_{rvSession.UUID}";
+            }
+                
 
             if (string.IsNullOrWhiteSpace(exportFolderFullPath))
             {
                 destinationFolderPath = Path.Combine(oplConfig.ExportSessionPath,
-                sessionFileName);
+                sessionFolderName);
                 if (Directory.Exists(destinationFolderPath) == false)
                 {
-
+                    Directory.CreateDirectory(destinationFolderPath);
                 }
-                Directory.CreateDirectory(destinationFolderPath);
-
             }
             else
             {
-                destinationFolderPath = Path.Combine(exportFolderFullPath, sessionFileName);
-                if (Directory.Exists(exportFolderFullPath) == false)
+                destinationFolderPath = Path.Combine(exportFolderFullPath, sessionFolderName);
+                if (Directory.Exists(destinationFolderPath) == false)
                 {
-                    Directory.CreateDirectory(exportFolderFullPath);
+                    Directory.CreateDirectory(destinationFolderPath);
                 }
                 
-                destinationFolderPath = exportFolderFullPath;
+                //destinationFolderPath = exportFolderFullPath;
             }
 
             if (exportConfig == null || 
                 (exportConfig != null && exportConfig.GeomagneticWeather == true))
             {
-                //Setuip GUIDs
+                //Setup GUIDs
                 Guid overviewGUID = rvSession.UUID; 
                 rvSession.SWXOverviewLargeUUID = overviewGUID.ToString();
                 Guid notificationGUID = rvSession.UUID; 
@@ -93,7 +101,7 @@ namespace OpenPsiLabWinForms.Controllers
                     try
                     {
                         client.DownloadFile(new Uri(overviewURL), 
-                            Path.Combine("swx-overview-large-{overviewGUID}.gif"));
+                            Path.Combine(destinationFolderPath, $"swx-overview-large-{overviewGUID}.gif"));
                         client.DownloadFile(new Uri(noficationURL),
                             Path.Combine(destinationFolderPath, 
                                 $"notifications-in-effect-timeline-{notificationGUID}.png"));
@@ -120,22 +128,38 @@ namespace OpenPsiLabWinForms.Controllers
                 }
             };
             opts.WriteIndented = true;
-
-            string sessionJson = JsonSerializer.Serialize<RVSession>((RVSession)rvSession, opts);
+            string sessionJson = string.Empty;
+            try
+            {
+                sessionJson = JsonSerializer.Serialize<RVSession>((RVSession)rvSession, opts);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+            string sessionName = rvSession.Name;
+            if (string.IsNullOrWhiteSpace(sessionName))
+            {
+                sessionName = "BlankSessionName";
+            }
+            else
+            {
+                sessionName = RemoveSpecialCharacters(rvSession.Name);
+            }
             string jsonPath = Path.Combine(destinationFolderPath, 
-                RemoveSpecialCharacters(rvSession.Name), $"_{rvSession.UUID}_SESSION.json");
+                 $"{sessionName}_{rvSession.UUID}_SESSION.json");
             File.WriteAllText(jsonPath, sessionJson);
 
             //Save to csv
             string sessionCSV = rvSession.ToCommaSeparatedValues();
-            string csvPath = Path.Combine(destinationFolderPath, 
-                               RemoveSpecialCharacters(rvSession.Name), $"_{rvSession.UUID}.csv");
+            string csvPath = Path.Combine(destinationFolderPath, $"{sessionName}_{rvSession.UUID}.csv");
             File.WriteAllText(csvPath, sessionCSV);
 
             //Save to tsv
             string sessionTSV = rvSession.ToTabSeparatedValues();
-            string tsvPath = Path.Combine(destinationFolderPath, 
-                               RemoveSpecialCharacters(rvSession.Name), $"_{rvSession.UUID}.tsv");
+            string tsvPath = Path.Combine(destinationFolderPath, $"{sessionName}_{rvSession.UUID}.tsv");
             File.WriteAllText(tsvPath, sessionTSV);
             
             //Save files that the user has added
