@@ -248,7 +248,7 @@ namespace OpenPsiLabWinForms.Controllers
                 jOpts.WriteIndented = true;
                 string exportJson = JsonSerializer.Serialize<SessionExportConfiguration>(exportConfig, jOpts);
                 string exportConfigPath = Path.Combine(destinationFolderPath, 
-                    "ExportConfig_", rvSession.UUID.ToString(), ".json");
+                    $"ExportConfig_{rvSession.UUID.ToString()}.json");
                 File.WriteAllText(exportConfigPath, exportJson);
             }
             return returnString;
