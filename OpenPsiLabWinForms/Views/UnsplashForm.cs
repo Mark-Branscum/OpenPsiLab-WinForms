@@ -69,24 +69,28 @@ namespace OpenPsiLabWinForms
                 _image.InfoURL = unsplashURLTextbox.Text.Trim();
 
                 UnsplashController unsplashDownloader = new UnsplashController();
-                Bitmap bm = unsplashDownloader.DownloadImage(unsplashURLTextbox.Text.Trim());
-                if (bm != null)
-                {
-                    _image.ImageBitmap = bm;
-                    unsplashPicBox.Image = _image.ImageBitmap;
-                    unsplashPicBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    saveButton.Enabled = true;
-                }
-                else
-                {
-                    if (suppressErrors) return;
-                    MessageBox.Show("Unable to download Unsplash image.  Please try again.",
-                        "Error", MessageBoxButtons.OK);
-                    unsplashURLTextbox.Text = string.Empty;
-                    _image.ImageBitmap = null;
-                    unsplashPicBox.Image = null;
-                    saveButton.Enabled = false;
-                }
+
+                throw new NotImplementedException();
+                
+                //Bitmap bm = unsplashDownloader.DownloadImage(unsplashURLTextbox.Text.Trim());
+                
+                //if (bm != null)
+                //{
+                //    _image.ImageBitmap = bm;
+                //    unsplashPicBox.Image = _image.ImageBitmap;
+                //    unsplashPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+                //    saveButton.Enabled = true;
+                //}
+                //else
+                //{
+                //    if (suppressErrors) return;
+                //    MessageBox.Show("Unable to download Unsplash image.  Please try again.",
+                //        "Error", MessageBoxButtons.OK);
+                //    unsplashURLTextbox.Text = string.Empty;
+                //    _image.ImageBitmap = null;
+                //    unsplashPicBox.Image = null;
+                //    saveButton.Enabled = false;
+                //}
             }
         }
 

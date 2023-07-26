@@ -50,6 +50,9 @@
             this.todays1300TextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.WebView2MissingTextBox = new System.Windows.Forms.TextBox();
+            this.localFileSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unspalshWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unsplashManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spaceWeatherwebView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -96,6 +99,10 @@
             // 
             // imagesToolStripMenuItem
             // 
+            this.imagesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.localFileSystemToolStripMenuItem,
+            this.unspalshWebToolStripMenuItem,
+            this.unsplashManualToolStripMenuItem});
             this.imagesToolStripMenuItem.Name = "imagesToolStripMenuItem";
             this.imagesToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.imagesToolStripMenuItem.Text = "Image Import";
@@ -250,6 +257,27 @@
             this.WebView2MissingTextBox.TabIndex = 12;
             this.WebView2MissingTextBox.Text = resources.GetString("WebView2MissingTextBox.Text");
             // 
+            // localFileSystemToolStripMenuItem
+            // 
+            this.localFileSystemToolStripMenuItem.Name = "localFileSystemToolStripMenuItem";
+            this.localFileSystemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.localFileSystemToolStripMenuItem.Text = "Local File System";
+            this.localFileSystemToolStripMenuItem.Click += new System.EventHandler(this.imagesToolStripMenuItem_Click);
+            // 
+            // unspalshWebToolStripMenuItem
+            // 
+            this.unspalshWebToolStripMenuItem.Name = "unspalshWebToolStripMenuItem";
+            this.unspalshWebToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.unspalshWebToolStripMenuItem.Text = "Unspalsh Web";
+            this.unspalshWebToolStripMenuItem.Click += new System.EventHandler(this.unsplashWebToolStripMenuItem_Click);
+            // 
+            // unsplashManualToolStripMenuItem
+            // 
+            this.unsplashManualToolStripMenuItem.Name = "unsplashManualToolStripMenuItem";
+            this.unsplashManualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.unsplashManualToolStripMenuItem.Text = "Unsplash Manual";
+            this.unsplashManualToolStripMenuItem.Click += new System.EventHandler(this.unsplashToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,6 +325,9 @@
         private System.Windows.Forms.ToolStripMenuItem timeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siderealTimeCalculatorToolStripMenuItem;
         private System.Windows.Forms.TextBox WebView2MissingTextBox;
+        private System.Windows.Forms.ToolStripMenuItem localFileSystemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unspalshWebToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unsplashManualToolStripMenuItem;
     }
 }
 

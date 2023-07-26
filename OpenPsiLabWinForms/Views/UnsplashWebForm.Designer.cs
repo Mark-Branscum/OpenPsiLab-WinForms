@@ -157,6 +157,7 @@
             this.unsplashWebView2.Source = new System.Uri("https://unsplash.com", System.UriKind.Absolute);
             this.unsplashWebView2.TabIndex = 0;
             this.unsplashWebView2.ZoomFactor = 1D;
+            this.unsplashWebView2.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.unsplashWebView2_NavigationCompleted);
             this.unsplashWebView2.SourceChanged += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs>(this.unsplashWebView2_SourceChanged);
             // 
             // UnsplashWebForm
