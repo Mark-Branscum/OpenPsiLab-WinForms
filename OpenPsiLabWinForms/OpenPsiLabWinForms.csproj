@@ -84,6 +84,12 @@
     <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1210.39, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Web.WebView2.1.0.1210.39\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PexelsDotNetSDK, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\PexelsDotNetSDK.1.0.11\lib\netstandard2.0\PexelsDotNetSDK.dll</HintPath>
+    </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
       <HintPath>packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.7\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
@@ -143,11 +149,13 @@
     <Compile Include="Controllers\RandomNumberController.cs" />
     <Compile Include="Controllers\ScreenCapture.cs" />
     <Compile Include="Controllers\SessionController.cs" />
-    <Compile Include="Controllers\UnsplashController.cs" />
+    <Compile Include="Controllers\webImagePexelController.cs" />
     <Compile Include="DataSources\SQLiteDatabase.cs" />
     <Compile Include="Interfaces\ADatabase.cs" />
     <Compile Include="Models\DateTimeLocal.cs" />
     <Compile Include="Models\OPLConfiguration.cs" />
+    <Compile Include="Models\Pexels\PhotoX.cs" />
+    <Compile Include="Models\Pexels\SourceX.cs" />
     <Compile Include="Models\RandomNumberResult.cs" />
     <Compile Include="Models\SessionExportConfiguration.cs" />
     <Compile Include="Models\RVSession.cs" />
@@ -248,11 +256,11 @@
     <Compile Include="Views\SplashForm.Designer.cs">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UnsplashForm.cs">
+    <Compile Include="Views\ImageDownloadForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\UnsplashForm.Designer.cs">
-      <DependentUpon>UnsplashForm.cs</DependentUpon>
+    <Compile Include="Views\ImageDownloadForm.Designer.cs">
+      <DependentUpon>ImageDownloadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ImageAsset.cs" />
     <Compile Include="Interfaces\IDatabase.cs" />
@@ -265,11 +273,11 @@
     <Compile Include="Views\SessionForm.Designer.cs">
       <DependentUpon>SessionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UnsplashWebForm.cs">
+    <Compile Include="Views\ImageDownloadWebForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\UnsplashWebForm.Designer.cs">
-      <DependentUpon>UnsplashWebForm.cs</DependentUpon>
+    <Compile Include="Views\ImageDownloadWebForm.Designer.cs">
+      <DependentUpon>ImageDownloadWebForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\WebForm.cs">
       <SubType>Form</SubType>
@@ -329,16 +337,16 @@
     <EmbeddedResource Include="Views\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UnsplashForm.resx">
-      <DependentUpon>UnsplashForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ImageDownloadForm.resx">
+      <DependentUpon>ImageDownloadForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UnsplashWebForm.resx">
-      <DependentUpon>UnsplashWebForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ImageDownloadWebForm.resx">
+      <DependentUpon>ImageDownloadWebForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WebForm.resx">
       <DependentUpon>WebForm.cs</DependentUpon>

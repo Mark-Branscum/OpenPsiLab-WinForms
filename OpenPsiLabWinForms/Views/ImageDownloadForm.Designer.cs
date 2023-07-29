@@ -1,6 +1,6 @@
 ﻿namespace OpenPsiLabWinForms
 {
-    partial class UnsplashForm
+    partial class ImageDownloadForm
     {
         /// <summary>
         /// Required designer variable.

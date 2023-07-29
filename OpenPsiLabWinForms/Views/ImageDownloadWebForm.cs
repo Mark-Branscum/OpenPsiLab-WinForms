@@ -18,46 +18,23 @@ using OpenPsiLabWinForms.Models;
 
 namespace OpenPsiLabWinForms.Views
 {
-    public partial class UnsplashWebForm : Form
+    public partial class ImageDownloadWebForm : Form
     {
         private ImageUtilities imageUtils;
         private OPLConfiguration oplConfig;
         private string webviewHTML = "";
 
-        public UnsplashWebForm(OPLConfiguration oplConfiguration)
+        public ImageDownloadWebForm(OPLConfiguration oplConfiguration)
         {
             InitializeComponent();
             oplConfig = oplConfiguration;
             imageUtils = new ImageUtilities(oplConfig);
-
-            //unsplashWebView2.Invoke(new Action(() =>
-            //{
-            //    Task.Run(async () => await unsplashWebView2.EnsureCoreWebView2Async()).GetAwaiter().GetResult();
-            //}));
-
-            //Task.Run(async () => await unsplashWebView2.EnsureCoreWebView2Async()).GetAwaiter().GetResult();
-
-            //unsplashWebView2.CoreWebView2.NavigationCompleted += handleNavigation;
-
-
-            //unsplashWebView2.CoreWebView2.NavigationCompleted += (sender, args) =>
-            //{
-
-            //};
-
-            
-
+            ImageDownloadWebView2.EnsureCoreWebView2Async();
+            ImageDownloadWebView2.Source = new Uri($"https://www.pexels.com?nocache={DateTime.Now.Ticks}");
         }
 
-
-        private void saveButton_Click(object sender, EventArgs e)
+        private async void saveButton_Click(object sender, EventArgs e)
         {
-            //if (string.IsNullOrWhiteSpace(nameTextBox.Text))
-            //{
-            //    MessageBox.Show("Navigate to image first before saving.", "Error", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-            //    return;
-            //}
             saveButton.Enabled = false;
             ImageAsset uia = new ImageAsset();
             uia.Name = nameTextBox.Text.Trim();
@@ -65,39 +42,20 @@ namespace OpenPsiLabWinForms.Views
             uia.InfoURL = urlTextBox.Text.Trim();
             uia.UUID = Guid.NewGuid();
 
-            //string jsonEncodedHtml =  unsplashWebView2.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML").Result;
-            //string jsonEncodedHtml = await unsplashWebView2.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML");
+            webImagePexelController webImageDownloader = new webImagePexelController(this.oplConfig);
 
-            //string jsonEncodedHtml = unsplashWebView2.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML").Result;
+            string imageID = webImageDownloader.GetImageIDFromInfoURL(uia.InfoURL);
+
+            Bitmap bm = await webImageDownloader.DownloadImage(imageID: imageID);
             
-            
-            //string jsonEncodedHtml = unsplashWebView2.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML")
-            //    .ConfigureAwait(false).GetAwaiter().GetResult();
-            //string html = System.Text.Json.JsonSerializer.Deserialize<string>(jsonEncodedHtml);
-
-            string precedingString = "title=\\\"Download photo\\\" href=\\\"";
-            string followingString = @"&amp;";
-
-            string tempURL = this.urlTextBox.Text.Trim();
-            string tempID = ExtractAfterLastHyphen(tempURL);
-
-            //string thing =
-            //    "title=\"Download photo\" href=\"https://unsplash.com/photos/zmj0Y5Ox2_8/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkwMjQ3MjQ5fA&amp;force=true\"><span class=\"TaWJf\">Download</span>";
-            //this.webviewHTML = thing;
-
-            UnsplashController unsplashDownloader = new UnsplashController();
-            Bitmap bm = unsplashDownloader.DownloadImage(
-                html: this.webviewHTML, precedingString: precedingString, 
-                middleString: tempID, followingString: followingString);
             if (bm != null) uia.ImageBitmap = bm;
             else
             {
                 MessageBox.Show("Unable to download Unsplash image.  Please try again.",
                     "Error", MessageBoxButtons.OK);
-                unsplashWebView2.GoBack();
+                ImageDownloadWebView2.GoBack();
                 return;
             }
-                
 
             //Save image to disk
             imageUtils.SaveImageToImagesFolder(uia);
@@ -108,14 +66,56 @@ namespace OpenPsiLabWinForms.Views
 
             nameTextBox.Text = "";
             notesTextBox.Text = "";
-            unsplashWebView2.GoBack();
+            ImageDownloadWebView2.GoBack();
+
+        }
+
+        private void unsplashSaveButton_Click(object sender, EventArgs e)
+        {
+            ////if (string.IsNullOrWhiteSpace(nameTextBox.Text))
+            ////{
+            ////    MessageBox.Show("Navigate to image first before saving.", "Error", MessageBoxButtons.OK,
+            ////        MessageBoxIcon.Error);
+            ////    return;
+            ////}
+            //saveButton.Enabled = false;
+            //ImageAsset uia = new ImageAsset();
+            //uia.Name = nameTextBox.Text.Trim();
+            //uia.Notes = notesTextBox.Text.Trim();
+            //uia.InfoURL = urlTextBox.Text.Trim();
+            //uia.UUID = Guid.NewGuid();
+
+            //webImagePexelController unsplashDownloader = new webImagePexelController();
+            ////Bitmap bm = unsplashDownloader.DownloadImage(
+            ////    imageInfoURL: uia.InfoURL, savePath: oplConfig.ImageFolderFullPath);
+            
+            //if (bm != null) uia.ImageBitmap = bm;
+            //else
+            //{
+            //    MessageBox.Show("Unable to download Unsplash image.  Please try again.",
+            //        "Error", MessageBoxButtons.OK);
+            //    ImageDownloadWebView2.GoBack();
+            //    return;
+            //}
+
+            ////Save image to disk
+            //imageUtils.SaveImageToImagesFolder(uia);
+
+            ////Save image to database
+            //SQLiteDatabase db = new SQLiteDatabase(oplConfig);
+            //db.ImageUpsert(uia);
+
+            //nameTextBox.Text = "";
+            //notesTextBox.Text = "";
+            //ImageDownloadWebView2.GoBack();
         }
 
         private void unsplashWebView2_SourceChanged(object sender, Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs e)
         {
-            string url = unsplashWebView2.Source.ToString();
-            if (url.StartsWith("https://unsplash.com/photos/"))
+            string url = ImageDownloadWebView2.Source.ToString();
+            if (url.StartsWith("https://www.pexels.com/photo"))
             {
+                webImageSavePanel.Visible = true;
                 saveButton.Enabled = true;
                 urlTextBox.Text = url;
                 nameTextBox.Text = "";
@@ -123,7 +123,11 @@ namespace OpenPsiLabWinForms.Views
 
             } else
             {
+                webImageSavePanel.Visible = false;
+                urlTextBox.Text = string.Empty;
                 saveButton.Enabled = false;
+                nameTextBox.Text = "";
+                notesTextBox.Text = "";
             }
         }
 
@@ -144,9 +148,9 @@ namespace OpenPsiLabWinForms.Views
             Console.WriteLine("Nav Competed <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             try
             {
-                var thing = unsplashWebView2.EnsureCoreWebView2Async();
+                var thing = ImageDownloadWebView2.EnsureCoreWebView2Async();
 
-                string html = await unsplashWebView2.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML");
+                string html = await ImageDownloadWebView2.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML");
 
                 if (!String.IsNullOrWhiteSpace(html))
                 {

@@ -1,6 +1,6 @@
 ﻿namespace OpenPsiLabWinForms.Views
 {
-    partial class UnsplashWebForm
+    partial class ImageDownloadWebForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.webImageSavePanel = new System.Windows.Forms.Panel();
             this.notesButton = new System.Windows.Forms.Button();
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.notesTextBox = new System.Windows.Forms.TextBox();
@@ -37,10 +37,10 @@
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.unsplashWebView2 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.ImageDownloadWebView2 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.unsplashWebView2)).BeginInit();
+            this.webImageSavePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageDownloadWebView2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -49,28 +49,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.unsplashWebView2);
+            this.panel1.Controls.Add(this.webImageSavePanel);
+            this.panel1.Controls.Add(this.ImageDownloadWebView2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1023, 793);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
+            // webImageSavePanel
             // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.notesButton);
-            this.panel2.Controls.Add(this.urlTextBox);
-            this.panel2.Controls.Add(this.notesTextBox);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.nameTextBox);
-            this.panel2.Controls.Add(this.saveButton);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(228, 668);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(564, 100);
-            this.panel2.TabIndex = 1;
+            this.webImageSavePanel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.webImageSavePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.webImageSavePanel.Controls.Add(this.notesButton);
+            this.webImageSavePanel.Controls.Add(this.urlTextBox);
+            this.webImageSavePanel.Controls.Add(this.notesTextBox);
+            this.webImageSavePanel.Controls.Add(this.label2);
+            this.webImageSavePanel.Controls.Add(this.nameTextBox);
+            this.webImageSavePanel.Controls.Add(this.saveButton);
+            this.webImageSavePanel.Controls.Add(this.label1);
+            this.webImageSavePanel.Location = new System.Drawing.Point(228, 668);
+            this.webImageSavePanel.Name = "webImageSavePanel";
+            this.webImageSavePanel.Size = new System.Drawing.Size(564, 100);
+            this.webImageSavePanel.TabIndex = 1;
+            this.webImageSavePanel.Visible = false;
             // 
             // notesButton
             // 
@@ -143,36 +144,36 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Name";
             // 
-            // unsplashWebView2
+            // ImageDownloadWebView2
             // 
-            this.unsplashWebView2.AllowExternalDrop = true;
-            this.unsplashWebView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ImageDownloadWebView2.AllowExternalDrop = true;
+            this.ImageDownloadWebView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.unsplashWebView2.CreationProperties = null;
-            this.unsplashWebView2.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.unsplashWebView2.Location = new System.Drawing.Point(0, -1);
-            this.unsplashWebView2.Name = "unsplashWebView2";
-            this.unsplashWebView2.Size = new System.Drawing.Size(1021, 792);
-            this.unsplashWebView2.Source = new System.Uri("https://unsplash.com", System.UriKind.Absolute);
-            this.unsplashWebView2.TabIndex = 0;
-            this.unsplashWebView2.ZoomFactor = 1D;
-            this.unsplashWebView2.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.unsplashWebView2_NavigationCompleted);
-            this.unsplashWebView2.SourceChanged += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs>(this.unsplashWebView2_SourceChanged);
+            this.ImageDownloadWebView2.CreationProperties = null;
+            this.ImageDownloadWebView2.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.ImageDownloadWebView2.Location = new System.Drawing.Point(0, -1);
+            this.ImageDownloadWebView2.Name = "ImageDownloadWebView2";
+            this.ImageDownloadWebView2.Size = new System.Drawing.Size(1021, 792);
+            this.ImageDownloadWebView2.Source = new System.Uri("https://www.pexels.com/", System.UriKind.Absolute);
+            this.ImageDownloadWebView2.TabIndex = 0;
+            this.ImageDownloadWebView2.ZoomFactor = 1D;
+            this.ImageDownloadWebView2.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.unsplashWebView2_NavigationCompleted);
+            this.ImageDownloadWebView2.SourceChanged += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs>(this.unsplashWebView2_SourceChanged);
             // 
-            // UnsplashWebForm
+            // ImageDownloadWebForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 817);
             this.Controls.Add(this.panel1);
-            this.Name = "UnsplashWebForm";
+            this.Name = "ImageDownloadWebForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Download Unsplash Images";
+            this.Text = "Download Images";
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.unsplashWebView2)).EndInit();
+            this.webImageSavePanel.ResumeLayout(false);
+            this.webImageSavePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageDownloadWebView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -182,12 +183,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Button saveButton;
-        private Microsoft.Web.WebView2.WinForms.WebView2 unsplashWebView2;
+        private Microsoft.Web.WebView2.WinForms.WebView2 ImageDownloadWebView2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.TextBox urlTextBox;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel webImageSavePanel;
         private System.Windows.Forms.Button notesButton;
     }
 }

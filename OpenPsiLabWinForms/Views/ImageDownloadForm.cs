@@ -17,13 +17,13 @@ using OpenPsiLabWinForms.Models;
 
 namespace OpenPsiLabWinForms
 {
-    public partial class UnsplashForm : Form
+    public partial class ImageDownloadForm : Form
     {
         private ImageAsset _image;
         private OPLConfiguration oplConfig;
         private ImageUtilities imageUtils;
 
-        public UnsplashForm(OPLConfiguration oplConfiguration)
+        public ImageDownloadForm(OPLConfiguration oplConfiguration)
         {
             InitializeComponent();
             oplConfig = oplConfiguration;
@@ -68,7 +68,7 @@ namespace OpenPsiLabWinForms
             {
                 _image.InfoURL = unsplashURLTextbox.Text.Trim();
 
-                UnsplashController unsplashDownloader = new UnsplashController();
+                webImagePexelController unsplashDownloader = new webImagePexelController(this.oplConfig);
 
                 throw new NotImplementedException();
                 

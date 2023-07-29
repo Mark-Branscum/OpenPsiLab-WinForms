@@ -166,6 +166,20 @@ namespace OpenPsiLabWinForms.Models
             }
         }
 
+        private string _imageDownloadURL;
+        public string ImageDownloadURL
+        {
+            get
+            {
+                return _imageDownloadURL;
+            }
+            set
+            {
+                _imageDownloadURL = value;
+                Save();
+            }
+        }
+
         private SessionExportConfiguration _sessionExportConfig;
         public SessionExportConfiguration SessionExportConfig
         {
@@ -239,35 +253,37 @@ namespace OpenPsiLabWinForms.Models
 
         public void InitializeNewConfig(string appDataPath, string documentsPath)
         {
+            //If there is alread a config file then skip this method
+            string configFilePath = Path.Combine(appDataPath, "OPLConfig.json");
+            if (File.Exists(configFilePath) == true)
+                return;
 
             //ImageFolderFullPath = "";
-            ImageFolderFullPath = Path.Combine(documentsPath, "Images");  //"Images";
-            //if (Directory.Exists(ImageFolderFullPath) == false)
-            //    Directory.CreateDirectory(ImageFolderFullPath);
-            
-            SQLiteDatabaseFullPath = Path.Combine(appDataPath, "Database", "OpenPsiLabData.db");
+            _imageFolderFullPath = Path.Combine(documentsPath, "Images");  
+
+            _sqlLiteDatabaseFullPath = Path.Combine(appDataPath, "Database", "OpenPsiLabData.db");
             string dbDirectory = Path.GetDirectoryName(SQLiteDatabaseFullPath);
             if (Directory.Exists(dbDirectory) == false)
                 Directory.CreateDirectory(dbDirectory);
 
-            LoadSessionPath = Path.Combine(documentsPath, "RVSessions");
+            _loadSessionPath = Path.Combine(documentsPath, "RVSessions");
             if (Directory.Exists(LoadSessionPath) == false)
                 Directory.CreateDirectory(LoadSessionPath);
 
-            ExportSessionPath = Path.Combine(documentsPath, "RVSessions");
+            _exportSessionPath = Path.Combine(documentsPath, "RVSessions");
             if (Directory.Exists(ExportSessionPath) == false)
                 Directory.CreateDirectory(ExportSessionPath);
 
-            AddImagePath = Path.Combine(documentsPath);
+            _addImagePath = Path.Combine(documentsPath);
             if (Directory.Exists(AddImagePath) == false)
                 Directory.CreateDirectory(AddImagePath);
 
-            AddFilePath = Path.Combine(documentsPath);
+            _addFilePath = Path.Combine(documentsPath);
             if (Directory.Exists(AddFilePath) == false)
                 Directory.CreateDirectory(AddFilePath);
             
-            RNGSerialPortName = "COM1";
-            RandomnessSource = "Random.org";
+            _rngSerialPortName = "COM1";
+            _randomnessSource = "Random.org";
           
             SessionExportConfiguration sec = new SessionExportConfiguration();
             sec.TargetIdentifier = true;
@@ -285,11 +301,11 @@ namespace OpenPsiLabWinForms.Models
             sec.Notes = false;
             sec.ARV = false;
             sec.GeomagneticWeather = false;
-            SessionExportConfig = sec;
+            _sessionExportConfig = sec;
 
             HighlightColor = Color.FromArgb(197, 201, 243);
             SupressSplashScreen = false;
-
+            
             JsonSerializerOptions opts = new JsonSerializerOptions()
             {
                 Converters = {
@@ -298,16 +314,19 @@ namespace OpenPsiLabWinForms.Models
             };
             opts.WriteIndented = true;
             string json = JsonSerializer.Serialize(this, opts);
-            string configFilePath = Path.Combine(appDataPath, "OPLConfig.json");
+
+            _appDataPath = appDataPath;
+            _documentsPath = documentsPath;
+
+            _imageDownloadURL = "https://www.pexels.com/";
+
+
             if (File.Exists(configFilePath) == false)
             {
                 FileStream fs = File.Create(configFilePath);
                 fs.Close();
             }
             File.WriteAllText(configFilePath, json);
-
-            this.AppDataPath = appDataPath;
-            this.DocumentsPath = documentsPath;
         }
 
         public void OnRaisePropertyChangedEvent(CustomEventArgs e)

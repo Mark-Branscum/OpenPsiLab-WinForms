@@ -133,13 +133,13 @@ namespace OpenPsiLabWinForms
 
         private void unsplashToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UnsplashForm unsplash = new UnsplashForm(oplConfig);
+            ImageDownloadForm unsplash = new ImageDownloadForm(oplConfig);
             unsplash.Show();
         }
 
         private void unsplashWebToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UnsplashWebForm uWeb = new UnsplashWebForm(oplConfig);
+            ImageDownloadWebForm uWeb = new ImageDownloadWebForm(oplConfig);
             uWeb.Show();
         }
 

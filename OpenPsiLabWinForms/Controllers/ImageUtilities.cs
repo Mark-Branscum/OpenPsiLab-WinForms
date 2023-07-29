@@ -94,7 +94,8 @@ namespace OpenPsiLabWinForms.Controllers
             {
                 Directory.CreateDirectory(completePath);
             }
-            string fileExtension = GetName(imageToSave.ImageFileFormat);
+            //string fileExtension = GetName(imageToSave.ImageFileFormat);
+            string fileExtension = "jpeg";
             imageToSave.FileName = $"{imageToSave.UUID}.{fileExtension}";
             completePath = Path.Combine(completePath, $"{imageToSave.UUID}.{fileExtension}");
             imageToSave.ImageBitmap.Save(completePath, imageToSave.ImageFileFormat);
