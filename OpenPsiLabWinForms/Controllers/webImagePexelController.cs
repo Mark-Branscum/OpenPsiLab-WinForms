@@ -29,21 +29,21 @@ namespace OpenPsiLabWinForms.Controllers
             oplConfig = oplConfigSource;
         }
 
-        public async Task<string> getImageDownloadURL(string imageID)
+        public async Task<string> getImageDownloadURL(string imageID, string pexelsAPIKey)
         {
-            string userAPI_ID = "";
-            var pexelsClient = new PexelsClient(userAPI_ID);
+            var pexelsClient = new PexelsClient(pexelsAPIKey);
             Photo result = await pexelsClient.GetPhotoAsync(int.Parse(imageID));//.GetAwaiter().GetResult();
             return result.source.original;
         }
 
-        public async Task<Bitmap> DownloadImage(string imageID)
+        public async Task<Bitmap> DownloadImage(string imageID, string pexelsAPIKey)
         {
             using (HttpClient client = new HttpClient())
             {
                 //string ID = GetImageIDFromInfoURL(imageInfoURL);
 
-                string imageDownloadURL = await getImageDownloadURL(imageID: imageID);
+                string imageDownloadURL = 
+                    await getImageDownloadURL(imageID: imageID, pexelsAPIKey: pexelsAPIKey);
 
                 var response = await client.GetAsync(imageDownloadURL);//.GetAwaiter().GetResult();
                 response.EnsureSuccessStatusCode();

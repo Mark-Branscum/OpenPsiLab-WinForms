@@ -34,6 +34,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localFileSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unspalshWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imagesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.rVSessionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,9 +52,6 @@
             this.todays1300TextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.WebView2MissingTextBox = new System.Windows.Forms.TextBox();
-            this.localFileSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unspalshWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unsplashManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spaceWeatherwebView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -101,12 +100,25 @@
             // 
             this.imagesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.localFileSystemToolStripMenuItem,
-            this.unspalshWebToolStripMenuItem,
-            this.unsplashManualToolStripMenuItem});
+            this.unspalshWebToolStripMenuItem});
             this.imagesToolStripMenuItem.Name = "imagesToolStripMenuItem";
             this.imagesToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.imagesToolStripMenuItem.Text = "Image Import";
             this.imagesToolStripMenuItem.Click += new System.EventHandler(this.imagesToolStripMenuItem_Click);
+            // 
+            // localFileSystemToolStripMenuItem
+            // 
+            this.localFileSystemToolStripMenuItem.Name = "localFileSystemToolStripMenuItem";
+            this.localFileSystemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.localFileSystemToolStripMenuItem.Text = "Local File System";
+            this.localFileSystemToolStripMenuItem.Click += new System.EventHandler(this.imagesToolStripMenuItem_Click);
+            // 
+            // unspalshWebToolStripMenuItem
+            // 
+            this.unspalshWebToolStripMenuItem.Name = "unspalshWebToolStripMenuItem";
+            this.unspalshWebToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.unspalshWebToolStripMenuItem.Text = "Pexel Website";
+            this.unspalshWebToolStripMenuItem.Click += new System.EventHandler(this.unsplashWebToolStripMenuItem_Click);
             // 
             // foldersToolStripMenuItem
             // 
@@ -120,14 +132,14 @@
             // imagesToolStripMenuItem1
             // 
             this.imagesToolStripMenuItem1.Name = "imagesToolStripMenuItem1";
-            this.imagesToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
+            this.imagesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.imagesToolStripMenuItem1.Text = "Imported Images";
             this.imagesToolStripMenuItem1.Click += new System.EventHandler(this.imagesToolStripMenuItem1_Click);
             // 
             // rVSessionsToolStripMenuItem
             // 
             this.rVSessionsToolStripMenuItem.Name = "rVSessionsToolStripMenuItem";
-            this.rVSessionsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.rVSessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rVSessionsToolStripMenuItem.Text = "Saved RV Sessions";
             this.rVSessionsToolStripMenuItem.Click += new System.EventHandler(this.rVSessionsToolStripMenuItem_Click);
             // 
@@ -142,7 +154,7 @@
             // reconcileImagesToolStripMenuItem
             // 
             this.reconcileImagesToolStripMenuItem.Name = "reconcileImagesToolStripMenuItem";
-            this.reconcileImagesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.reconcileImagesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reconcileImagesToolStripMenuItem.Text = "Reconcile Images";
             this.reconcileImagesToolStripMenuItem.Click += new System.EventHandler(this.reconcileImagesToolStripMenuItem_Click);
             // 
@@ -257,27 +269,6 @@
             this.WebView2MissingTextBox.TabIndex = 12;
             this.WebView2MissingTextBox.Text = resources.GetString("WebView2MissingTextBox.Text");
             // 
-            // localFileSystemToolStripMenuItem
-            // 
-            this.localFileSystemToolStripMenuItem.Name = "localFileSystemToolStripMenuItem";
-            this.localFileSystemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.localFileSystemToolStripMenuItem.Text = "Local File System";
-            this.localFileSystemToolStripMenuItem.Click += new System.EventHandler(this.imagesToolStripMenuItem_Click);
-            // 
-            // unspalshWebToolStripMenuItem
-            // 
-            this.unspalshWebToolStripMenuItem.Name = "unspalshWebToolStripMenuItem";
-            this.unspalshWebToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.unspalshWebToolStripMenuItem.Text = "Unspalsh Web";
-            this.unspalshWebToolStripMenuItem.Click += new System.EventHandler(this.unsplashWebToolStripMenuItem_Click);
-            // 
-            // unsplashManualToolStripMenuItem
-            // 
-            this.unsplashManualToolStripMenuItem.Name = "unsplashManualToolStripMenuItem";
-            this.unsplashManualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.unsplashManualToolStripMenuItem.Text = "Unsplash Manual";
-            this.unsplashManualToolStripMenuItem.Click += new System.EventHandler(this.unsplashToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,7 +318,6 @@
         private System.Windows.Forms.TextBox WebView2MissingTextBox;
         private System.Windows.Forms.ToolStripMenuItem localFileSystemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unspalshWebToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem unsplashManualToolStripMenuItem;
     }
 }
 

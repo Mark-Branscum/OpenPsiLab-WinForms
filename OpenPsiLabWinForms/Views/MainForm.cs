@@ -139,8 +139,46 @@ namespace OpenPsiLabWinForms
 
         private void unsplashWebToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImageDownloadWebForm uWeb = new ImageDownloadWebForm(oplConfig);
-            uWeb.Show();
+            string apiKey = oplConfig.PexelsAPIKey;
+            if (string.IsNullOrWhiteSpace(apiKey) == false)
+            {
+                ImageDownloadWebForm uWeb = new ImageDownloadWebForm(
+                    oplConfiguration: oplConfig, pexelsAPIKey: apiKey);
+                uWeb.Show();
+            }
+            else
+            {
+                using (PexelsAPIPrompt prompt = new PexelsAPIPrompt())
+                {
+                    DialogResult result = prompt.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        string pexelsAPIKey = prompt.UserInput;
+                        if (prompt.SaveToConfig == true)
+                        {
+                            oplConfig.PexelsAPIKey = pexelsAPIKey;
+                        }
+                        if (string.IsNullOrWhiteSpace(pexelsAPIKey))
+                        {
+                            MessageBox.Show(
+                                "No API Key entered. Exiting.",
+                                "Missing API Key",
+                                MessageBoxButtons.OK);
+                            return;
+                        }
+                        else
+                        {
+                            ImageDownloadWebForm uWeb = new ImageDownloadWebForm(
+                                oplConfiguration: oplConfig, pexelsAPIKey: pexelsAPIKey);
+                            uWeb.Show();
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

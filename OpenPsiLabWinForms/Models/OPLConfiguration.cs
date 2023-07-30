@@ -248,7 +248,20 @@ namespace OpenPsiLabWinForms.Models
                 _installOrUpdateConfigured = value;
             }
         }
-        
+
+        private string _pexelsAPIKey = "";
+        public string PexelsAPIKey
+        {
+            get
+            {
+                return _pexelsAPIKey;
+            }
+            set
+            {
+                _pexelsAPIKey = value;
+            }
+        }
+
         public event EventHandler<CustomEventArgs> RaisePropertyChangedEvent;
 
         public void InitializeNewConfig(string appDataPath, string documentsPath)

@@ -23,12 +23,14 @@ namespace OpenPsiLabWinForms.Views
         private ImageUtilities imageUtils;
         private OPLConfiguration oplConfig;
         private string webviewHTML = "";
+        private string pexelsAPIKey = "";
 
-        public ImageDownloadWebForm(OPLConfiguration oplConfiguration)
+        public ImageDownloadWebForm(OPLConfiguration oplConfiguration, string pexelsAPIKey)
         {
             InitializeComponent();
             oplConfig = oplConfiguration;
             imageUtils = new ImageUtilities(oplConfig);
+            this.pexelsAPIKey = pexelsAPIKey;
             ImageDownloadWebView2.EnsureCoreWebView2Async();
             ImageDownloadWebView2.Source = new Uri($"https://www.pexels.com?nocache={DateTime.Now.Ticks}");
         }
@@ -46,7 +48,8 @@ namespace OpenPsiLabWinForms.Views
 
             string imageID = webImageDownloader.GetImageIDFromInfoURL(uia.InfoURL);
 
-            Bitmap bm = await webImageDownloader.DownloadImage(imageID: imageID);
+            Bitmap bm = await webImageDownloader.DownloadImage(
+                imageID: imageID, pexelsAPIKey: pexelsAPIKey);
             
             if (bm != null) uia.ImageBitmap = bm;
             else
