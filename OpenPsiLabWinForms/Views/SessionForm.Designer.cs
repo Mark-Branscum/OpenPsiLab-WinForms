@@ -441,16 +441,16 @@
             // 
             this.sessionStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.randomSourceLabel});
-            this.sessionStatusStrip.Location = new System.Drawing.Point(0, 630);
+            this.sessionStatusStrip.Location = new System.Drawing.Point(0, 633);
             this.sessionStatusStrip.Name = "sessionStatusStrip";
-            this.sessionStatusStrip.Size = new System.Drawing.Size(646, 25);
+            this.sessionStatusStrip.Size = new System.Drawing.Size(646, 22);
             this.sessionStatusStrip.TabIndex = 22;
             this.sessionStatusStrip.Text = "statusStrip1";
             // 
             // randomSourceLabel
             // 
             this.randomSourceLabel.Name = "randomSourceLabel";
-            this.randomSourceLabel.Size = new System.Drawing.Size(145, 20);
+            this.randomSourceLabel.Size = new System.Drawing.Size(117, 17);
             this.randomSourceLabel.Text = "Randomness Source:";
             this.randomSourceLabel.Click += new System.EventHandler(this.randomSourceLabel_Click);
             // 

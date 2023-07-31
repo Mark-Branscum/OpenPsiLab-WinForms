@@ -109,14 +109,14 @@
             // localFileSystemToolStripMenuItem
             // 
             this.localFileSystemToolStripMenuItem.Name = "localFileSystemToolStripMenuItem";
-            this.localFileSystemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.localFileSystemToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.localFileSystemToolStripMenuItem.Text = "Local File System";
             this.localFileSystemToolStripMenuItem.Click += new System.EventHandler(this.imagesToolStripMenuItem_Click);
             // 
             // unspalshWebToolStripMenuItem
             // 
             this.unspalshWebToolStripMenuItem.Name = "unspalshWebToolStripMenuItem";
-            this.unspalshWebToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.unspalshWebToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.unspalshWebToolStripMenuItem.Text = "Pexel Website";
             this.unspalshWebToolStripMenuItem.Click += new System.EventHandler(this.unsplashWebToolStripMenuItem_Click);
             // 
@@ -132,14 +132,14 @@
             // imagesToolStripMenuItem1
             // 
             this.imagesToolStripMenuItem1.Name = "imagesToolStripMenuItem1";
-            this.imagesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.imagesToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
             this.imagesToolStripMenuItem1.Text = "Imported Images";
             this.imagesToolStripMenuItem1.Click += new System.EventHandler(this.imagesToolStripMenuItem1_Click);
             // 
             // rVSessionsToolStripMenuItem
             // 
             this.rVSessionsToolStripMenuItem.Name = "rVSessionsToolStripMenuItem";
-            this.rVSessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rVSessionsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.rVSessionsToolStripMenuItem.Text = "Saved RV Sessions";
             this.rVSessionsToolStripMenuItem.Click += new System.EventHandler(this.rVSessionsToolStripMenuItem_Click);
             // 
@@ -200,7 +200,7 @@
             // 
             this.aRVAssociativeRemoteViewingSessionToolStripMenuItem.Name = "aRVAssociativeRemoteViewingSessionToolStripMenuItem";
             this.aRVAssociativeRemoteViewingSessionToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.aRVAssociativeRemoteViewingSessionToolStripMenuItem.Text = "ARV (Associative) Remote Viewing Session";
+            this.aRVAssociativeRemoteViewingSessionToolStripMenuItem.Text = "ARV (Associative Remote Viewing) Session";
             this.aRVAssociativeRemoteViewingSessionToolStripMenuItem.Click += new System.EventHandler(this.aRVAssociativeRemoteViewingSessionToolStripMenuItem_Click);
             // 
             // spaceWeatherwebView2

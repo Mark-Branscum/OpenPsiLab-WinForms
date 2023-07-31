@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -24,6 +25,16 @@ namespace OpenPsiLabWinForms.Controllers
         private SiderealTimeUtilities sideTimeUtilities;
         private OPLConfiguration oplConfig;
         private ImageUtilities imageUtils;
+
+        private List<string> _sessionFilesList = new List<string>();
+        public List<string> sessionFilesList
+        {
+            get
+            {
+                return _sessionFilesList;
+            } 
+        }
+        
         public SessionController(ADatabase sessionDB, OPLConfiguration oplConfiguration)
         {
             sessionDatabase = sessionDB;
@@ -171,7 +182,7 @@ namespace OpenPsiLabWinForms.Controllers
                 foreach (string tempFilePath in fileList)
                 {
                     string tempFileName = Path.GetFileName(tempFilePath);
-                    string destFileName = $"{fileDestination}{tempFileName}";
+                    string destFileName = Path.Combine(fileDestination, tempFileName);
                     if (tempFilePath != destFileName)
                         File.Copy(tempFilePath, destFileName, true);
 
@@ -224,21 +235,37 @@ namespace OpenPsiLabWinForms.Controllers
             {
                 //Save Image 1 to file system
                 ImageAsset Im1 = rvSession.Image1;
-                string imagePath = Path.Combine(destinationFolderPath, 
-                    "Image1_", rvSession.UUID.ToString(), ".",
-                    imageUtils.GetName(Im1.ImageFileFormat));
-
-                Im1.ImageBitmap.Save(imagePath, Im1.ImageFileFormat);
+                string imagePath = Path.Combine(destinationFolderPath,
+                                       "Image1_") + rvSession.UUID.ToString() + "." +
+                                   imageUtils.GetName(Im1.ImageFileFormat);
+                try
+                {
+                    //Im1.ImageBitmap.Save(imagePath);
+                    Im1.ImageBitmap.Save(imagePath, Im1.ImageFileFormat);
+                }
+                catch (Exception e)
+                {
+                    //Error resaving bitmap to the original file it was
+                    //created from. So, there is no need to save it again.
+                }
             }
             if (rvSession.Image2 != null && rvSession.Image2.ImageBitmap != null && saveImage2 == true)
             {
                 //Save Image 2 to file system
                 ImageAsset Im2 = rvSession.Image2;
                 string imagePath = Path.Combine(destinationFolderPath, 
-                     "Image2_", rvSession.UUID.ToString(), ".", 
-                     imageUtils.GetName(Im2.ImageFileFormat));
+                     "Image2_") + rvSession.UUID.ToString() + "." + 
+                     imageUtils.GetName(Im2.ImageFileFormat);
+                try
+                {
+                    Im2.ImageBitmap.Save(imagePath, Im2.ImageFileFormat);
+                }
+                catch (Exception e)
+                {
+                    //Error resaving bitmap to the original file it was
+                    //created from. So, there is no need to save it again.
+                }
 
-                Im2.ImageBitmap.Save(imagePath, Im2.ImageFileFormat);
             }
 
             //Save export config to file

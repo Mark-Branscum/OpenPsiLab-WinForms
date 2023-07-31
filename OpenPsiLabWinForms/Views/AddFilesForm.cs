@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Web.WebView2.Core.Raw;
 using OpenPsiLabWinForms.Controllers;
 using OpenPsiLabWinForms.Models;
 using OpenPsiLabWinForms.Properties;
@@ -18,11 +19,29 @@ namespace OpenPsiLabWinForms.Views
     {
         private OPLConfiguration oplConfig { get; set; }
 
-        public AddFilesForm(List<string> filePaths, OPLConfiguration oplConfiguration)
+        private Modes mode { get; set; }
+        public enum Modes
+        {
+            Session,
+            Export
+        }
+
+        public AddFilesForm(List<string> filePaths, 
+            OPLConfiguration oplConfiguration, Modes mode)
         {
             InitializeComponent();
 
             oplConfig = oplConfiguration;
+            this.mode = mode;
+
+            if (mode == Modes.Session)
+            {
+                this.modeTbx.Visible = false;
+            }
+            else
+            {
+                this.modeTbx.Visible = true;
+            }
 
             //Add existing file paths to grid
             if (filePaths != null && filePaths.Count > 0)
@@ -43,6 +62,7 @@ namespace OpenPsiLabWinForms.Views
             }
             fileDataGridView.ClearSelection();
             fileDataGridView.Refresh();
+
         }
 
         private void addButton_Click(object sender, EventArgs e)

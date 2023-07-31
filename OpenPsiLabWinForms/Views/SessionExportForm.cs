@@ -24,18 +24,28 @@ namespace OpenPsiLabWinForms.Views
         public SessionExportConfiguration exportConfig { get; set; }
         private RVSession RVSessionSource;
         public RVSession RvSessionExport;
-        private List<string> sourceAddFileList;
-        public List<string> addFilesList { get; set; }
+        private List<string> _sessionFileList;
+        private List<string> _exportFileList { get; set; }
+        public List<string> ExportFileList
+        {
+            get
+            {
+                return _exportFileList;
+            }
+        }
         private bool _addFileListFirstLoad = true;
         private OPLConfiguration oplConfig { get; set; }
+        private SessionController sessionController { get; }
         
-        public SessionExportForm(List<string> filesList, 
-            RVSession rvSessionSource, OPLConfiguration oplConfiguration)
+        public SessionExportForm(List<string> sessionFilesList, 
+            RVSession rvSessionSource, OPLConfiguration oplConfiguration,
+            SessionController sessionController)
         {
             InitializeComponent();
+            this.sessionController = sessionController;
             RVSessionSource = rvSessionSource;
-            sourceAddFileList = filesList;
-            addFilesList = new List<string>();
+            this._sessionFileList = sessionFilesList;
+            this._exportFileList = new List<string>();
             oplConfig = oplConfiguration;
             setupExportConfig();
             folderNameTextBox.Text = oplConfiguration.ExportSessionPath;
@@ -48,7 +58,7 @@ namespace OpenPsiLabWinForms.Views
                 SessionExportConfiguration ep = oplConfig.SessionExportConfig;
                 if (ep == null)
                 {
-                    setToDefaults();
+                    setUIToDefaults();
                     exportConfig = new SessionExportConfiguration();
                     ep = exportConfig;
                     setExportConfigToUI();
@@ -71,17 +81,17 @@ namespace OpenPsiLabWinForms.Views
                 if (ep.Files)
                 {
                     filesCheckBox.Checked = ep.Files;
-                    addFilesList.Clear();
+                    ExportFileList.Clear();
                     filesButton.Enabled = true;
-                    foreach (string sourceFile in sourceAddFileList)
+                    foreach (string sessionFile in _sessionFileList)
                     {
-                        addFilesList.Add(sourceFile);
+                        ExportFileList.Add(sessionFile);
                         _addFileListFirstLoad = false;
                     }
                 }
                 else
                 {
-                    addFilesList.Clear();
+                    ExportFileList.Clear();
                     filesButton.Enabled = false;
                 }
 
@@ -141,7 +151,7 @@ namespace OpenPsiLabWinForms.Views
                 return;
             }
             if (!filesCheckBox.Checked)
-                addFilesList.Clear();
+                ExportFileList.Clear();
             RvSessionExport = cloneSession(RVSessionSource, exportConfig);
             DialogResult = DialogResult.OK;
         }
@@ -163,10 +173,10 @@ namespace OpenPsiLabWinForms.Views
             exportConfig.Notes = notesCheckBox.Checked;
             exportConfig.GeomagneticWeather = geomagneticCheckBox.Checked;
             exportConfig.ARV = arvCheckBox.Checked;
-            JsonSerializerOptions jsonOpts = new JsonSerializerOptions();
-            jsonOpts.WriteIndented = true;
+            //JsonSerializerOptions jsonOpts = new JsonSerializerOptions();
+            //jsonOpts.WriteIndented = true;
             oplConfig.SessionExportConfig = exportConfig;
-            Settings.Default.Save();
+            //Settings.Default.Save();
         }
 
         private RVSession cloneSession(RVSession rvSessionSource, SessionExportConfiguration exportConfig)
@@ -265,10 +275,10 @@ namespace OpenPsiLabWinForms.Views
 
         private void setToDefaultsButton_Click(object sender, EventArgs e)
         {
-            setToDefaults();
+            setUIToDefaults();
         }
 
-        private void setToDefaults()
+        private void setUIToDefaults()
         {
             targetIDCheckBox.Checked = true;
             noImagesRadioButton.Checked = true;
@@ -287,8 +297,7 @@ namespace OpenPsiLabWinForms.Views
         {
             DialogResult = DialogResult.Cancel;
         }
-
-
+        
         private void testButton_Click(object sender, EventArgs e)
         {
             RVSession newSP = cloneSession(RVSessionSource, exportConfig);
@@ -296,7 +305,8 @@ namespace OpenPsiLabWinForms.Views
 
         private void filesButton_Click(object sender, EventArgs e)
         {
-            AddFilesForm filesForm = new AddFilesForm(addFilesList, oplConfig);
+            AddFilesForm filesForm = new AddFilesForm(filePaths: ExportFileList, 
+                oplConfiguration: oplConfig, mode: AddFilesForm.Modes.Export);
 
             DialogResult dlgResult = filesForm.ShowDialog(this);
 
@@ -304,17 +314,17 @@ namespace OpenPsiLabWinForms.Views
             {
                 if (filesForm.fileDataGridView.Rows.Count > 0)
                 {
-                    addFilesList.Clear();
+                    ExportFileList.Clear();
                     foreach (DataGridViewRow row in filesForm.fileDataGridView.Rows)
                     {
-                        addFilesList.Add(row.Cells[1].Value.ToString());
+                        ExportFileList.Add(row.Cells[1].Value.ToString());
                     }
 
                     filesButton.BackColor = oplConfig.HighlightColor;
                 }
                 else
                 {
-                    addFilesList.Clear();
+                    ExportFileList.Clear();
                     filesButton.BackColor = default(Color);
                     return;
                 }
@@ -341,8 +351,7 @@ namespace OpenPsiLabWinForms.Views
                 //}
             }
         }
-
-
+        
         private void filesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (filesCheckBox.Checked)
@@ -350,10 +359,10 @@ namespace OpenPsiLabWinForms.Views
                 if (_addFileListFirstLoad)
                 {
                     _addFileListFirstLoad = false;
-                    addFilesList.Clear();
-                    foreach (string sourceFile in sourceAddFileList)
+                    ExportFileList.Clear();
+                    foreach (string sourceFile in _sessionFileList)
                     {
-                        addFilesList.Add(sourceFile);
+                        ExportFileList.Add(sourceFile);
                         _addFileListFirstLoad = false;
                     }
                 }
@@ -364,7 +373,7 @@ namespace OpenPsiLabWinForms.Views
                 filesButton.Enabled = false;
             }
 
-            if (addFilesList.Count > 0)
+            if (ExportFileList.Count > 0)
                 filesButton.BackColor = oplConfig.HighlightColor;
             else
                 filesButton.BackColor = default(Color);

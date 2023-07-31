@@ -35,6 +35,7 @@
             this.viewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.modeTbx = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             // doneButton
             // 
             this.doneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.doneButton.Location = new System.Drawing.Point(682, 199);
+            this.doneButton.Location = new System.Drawing.Point(623, 205);
             this.doneButton.Name = "doneButton";
             this.doneButton.Size = new System.Drawing.Size(75, 23);
             this.doneButton.TabIndex = 5;
@@ -83,7 +84,7 @@
             this.fileDataGridView.Location = new System.Drawing.Point(13, 42);
             this.fileDataGridView.Name = "fileDataGridView";
             this.fileDataGridView.ReadOnly = true;
-            this.fileDataGridView.Size = new System.Drawing.Size(744, 148);
+            this.fileDataGridView.Size = new System.Drawing.Size(685, 154);
             this.fileDataGridView.TabIndex = 6;
             this.fileDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fileDataGridView_CellContentClick_1);
             // 
@@ -108,7 +109,7 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(601, 199);
+            this.cancelButton.Location = new System.Drawing.Point(542, 205);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 7;
@@ -116,11 +117,24 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // modeTbx
+            // 
+            this.modeTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modeTbx.Location = new System.Drawing.Point(12, 208);
+            this.modeTbx.Name = "modeTbx";
+            this.modeTbx.ReadOnly = true;
+            this.modeTbx.Size = new System.Drawing.Size(524, 20);
+            this.modeTbx.TabIndex = 8;
+            this.modeTbx.Text = "Note: This is for export only.  It does not add/remove files from the actual sess" +
+    "ion.";
+            // 
             // AddFilesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 231);
+            this.ClientSize = new System.Drawing.Size(710, 237);
+            this.Controls.Add(this.modeTbx);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.fileDataGridView);
             this.Controls.Add(this.doneButton);
@@ -132,6 +146,7 @@
             this.Activated += new System.EventHandler(this.AddFilesForm_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.fileDataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -143,5 +158,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         public System.Windows.Forms.DataGridView fileDataGridView;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TextBox modeTbx;
     }
 }

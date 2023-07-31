@@ -39,7 +39,6 @@ namespace OpenPsiLabWinForms.Views
             }
         }
         private SessionExportForm exportForm;
-        private List<string> addFilesList = new List<string>();
         private KeyValuePair<string, string> VIEWER_TARGET;
         private bool disableImageCheckboxes = false;
         private SessionType _typeOfSession;
@@ -531,23 +530,25 @@ namespace OpenPsiLabWinForms.Views
 
         private void addFilesButton_Click(object sender, EventArgs e)
         {
-            AddFilesForm fileForm = new AddFilesForm(addFilesList, oplConfig);
+            AddFilesForm fileForm = new AddFilesForm(sessionController.sessionFilesList, 
+                oplConfig, AddFilesForm.Modes.Session);
+
             DialogResult dlgResult = fileForm.ShowDialog(this);
 
             if (dlgResult == DialogResult.OK)
             {
                 if (fileForm.fileDataGridView.Rows.Count > 0)
                 {
-                    addFilesList.Clear();
+                    sessionController.sessionFilesList.Clear();
                     foreach (DataGridViewRow row in fileForm.fileDataGridView.Rows)
                     {
-                        addFilesList.Add(row.Cells[1].Value.ToString());
+                        sessionController.sessionFilesList.Add(row.Cells[1].Value.ToString());
                     }
                     addFilesButton.BackColor = oplConfig.HighlightColor; 
                 }
                 else
                 {
-                    addFilesList.Clear();
+                    sessionController.sessionFilesList.Clear();
                     addFilesButton.BackColor = default(Color);
                     return;
                 }
@@ -713,14 +714,14 @@ namespace OpenPsiLabWinForms.Views
 
                     reset();
                     rvSession = sp;
-                    addFilesList.Clear();
+                    sessionController.sessionFilesList.Clear();
                     string[] filePaths = Directory.GetFiles(Path.Combine(folderPath, "Files"));
 
                     if (filePaths.Length > 0)
                         addFilesButton.BackColor = oplConfig.HighlightColor;
                     foreach (string filePath in filePaths)
                     {
-                        addFilesList.Add(filePath);
+                        sessionController.sessionFilesList.Add(filePath);
                     }
                 }
                 else
@@ -844,12 +845,14 @@ namespace OpenPsiLabWinForms.Views
         {
             try
             {
-                List<string> exportFiles = new List<string>();
-                foreach (string filePath in addFilesList)
+                List<string> sessionFiles = new List<string>();
+                foreach (string filePath in sessionController.sessionFilesList)
                 {
-                    exportFiles.Add(filePath.ToString());
+                    sessionFiles.Add(filePath.ToString());
                 }
-                exportForm = new SessionExportForm(exportFiles, rvSession, oplConfig);
+                exportForm = new SessionExportForm(sessionFilesList: sessionFiles, 
+                    rvSessionSource: rvSession, oplConfiguration: oplConfig, 
+                    sessionController: sessionController);
                 exportForm.ShowDialog(this);
 
                 if (exportForm.DialogResult == DialogResult.OK)
@@ -872,7 +875,7 @@ namespace OpenPsiLabWinForms.Views
                     }
                     
                     sessionController.SessionPracticeSaveToFolder(rvSession: exportForm.RvSessionExport,
-                        sessionForm: this, fileList: exportForm.addFilesList, exportFolderFullPath: folderPath, 
+                        sessionForm: this, fileList: exportForm.ExportFileList, exportFolderFullPath: folderPath, 
                         exportConfig: exportForm.exportConfig);
 
                     MessageBox.Show("Export complete.", "Export Complete", MessageBoxButtons.OK);
@@ -923,7 +926,7 @@ namespace OpenPsiLabWinForms.Views
             rvSession.SessionType = typeOfSession;
             rvSession.EndDateTimeLocal = DateTimeOffset.Now;
             string doWhat = sessionController.SessionPracticeSaveToFolder(rvSession: rvSession,
-                sessionForm: this, includeScreenshot: true, fileList: addFilesList);
+                sessionForm: this, includeScreenshot: true, fileList: sessionController.sessionFilesList);
             if (doWhat == "cancel") return;
             if (doWhat == "overwrite")
                 sessionController.SessionPracticeSaveToDatabase(rvSession, true);

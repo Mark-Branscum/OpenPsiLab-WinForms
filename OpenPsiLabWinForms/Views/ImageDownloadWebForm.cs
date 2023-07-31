@@ -70,7 +70,6 @@ namespace OpenPsiLabWinForms.Views
             nameTextBox.Text = "";
             notesTextBox.Text = "";
             ImageDownloadWebView2.GoBack();
-
         }
 
         private void unsplashSaveButton_Click(object sender, EventArgs e)
