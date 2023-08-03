@@ -77,9 +77,11 @@ namespace OpenPsiLabWinForms.Models
         
         public bool SessionName { get; set; }
         public bool ViewerName { get; set; }
-        public bool JudgeName { get; set; }
+        public bool RaterName { get; set; }
+        public bool TaskerName { get; set; }
+        public bool MonitorName { get; set; }
         public bool ViewerSelected { get; set; }
-        public bool JudgeSelected { get; set; }
+        public bool RaterSelected { get; set; }
         public bool TargetSelected { get; set; }
         public bool Screenshot { get; set; }
         public bool Notes { get; set; }

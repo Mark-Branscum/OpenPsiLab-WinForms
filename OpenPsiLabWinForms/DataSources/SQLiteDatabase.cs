@@ -349,26 +349,26 @@ namespace OpenPsiLabWinForms.DataSources
                             ((object)sp.EndDateTimeSidereal) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_selected_image_uuid",
                             ((object)sp.ViewerSelectedImageUUID.ToString()) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_image_uuid",
-                            ((object)sp.JudgeSelectedImageUUID.ToString()) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_image_uuid",
+                            ((object)sp.RaterSelectedImageUUID.ToString()) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@target_image_uuid",
                             ((object)sp.TargetImageUUID.ToString()) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_selected_datetime_local",
                             ((object)sp.ViewerSelectedDateTimeLocal) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_datetime_local",
-                            ((object)sp.JudgeSelectedDateTimeLocal) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_datetime_local",
+                            ((object)sp.RaterSelectedDateTimeLocal) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@targeted_datetime_local",
                             ((object)sp.TargetedDateTimeLocal) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_selected_datetime_utc",
                             ((object)sp.ViewerSelectedDateTimeUTC) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_datetime_utc",
-                            ((object)sp.JudgeSelectedDateTimeUTC) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_datetime_utc",
+                            ((object)sp.RaterSelectedDateTimeUTC) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@targeted_datetime_utc",
                             ((object)sp.TargetedDateTimeUTC) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_selected_datetime_sidereal",
                             ((object)sp.ViewerSelectedDateTimeSidereal) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_datetime_sidereal",
-                            ((object)sp.JudgeSelectedDateTimeSidereal) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_datetime_sidereal",
+                            ((object)sp.RaterSelectedDateTimeSidereal) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@targeted_datetime_sidereal",
                             ((object)sp.TargetedDateTimeSidereal) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@swx_overview_large_uuid",
@@ -379,12 +379,16 @@ namespace OpenPsiLabWinForms.DataSources
                             ((object)sp.ScreenshotUUID.ToString()) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_selected_target",
                             ((object)sp.ViewerSelectedTarget) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_target",
-                            ((object)sp.JudgeSelectedTarget) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_target",
+                            ((object)sp.RaterSelectedTarget) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_name",
                             ((object)sp.ViewerName) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_name",
-                            ((object)sp.JudgeName) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_name",
+                            ((object)sp.RaterName) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@tasker_name",
+                            ((object)sp.RaterName) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@monitor_name",
+                            ((object)sp.RaterName) ?? DBNull.Value);
 
                         command.Parameters.AddWithValue("@arv_question",
                             ((object)sp.ARVQuestion) ?? DBNull.Value);
@@ -402,12 +406,12 @@ namespace OpenPsiLabWinForms.DataSources
                             "longitude, start_datetime_local, " +
                             "start_datetime_utc, start_datetime_sidereal, end_datetime_local, " +
                             "end_datetime_utc, end_datetime_sidereal, viewer_selected_image_uuid, " +
-                            "judge_selected_image_uuid, target_image_uuid, viewer_selected_datetime_local, " +
-                            "judge_selected_datetime_local, targeted_datetime_local, viewer_selected_datetime_utc, " +
-                            "judge_selected_datetime_utc, targeted_datetime_utc, viewer_selected_datetime_sidereal, " +
-                            "judge_selected_datetime_sidereal, targeted_datetime_sidereal, " +
+                            "rater_selected_image_uuid, target_image_uuid, viewer_selected_datetime_local, " +
+                            "rater_selected_datetime_local, targeted_datetime_local, viewer_selected_datetime_utc, " +
+                            "rater_selected_datetime_utc, targeted_datetime_utc, viewer_selected_datetime_sidereal, " +
+                            "rater_selected_datetime_sidereal, targeted_datetime_sidereal, " +
                             "swx_overview_large_uuid, notifications_in_effect_timeline_uuid, screenshot_uuid, " +
-                            "viewer_selected_target, judge_selected_target, viewer_name, judge_name, " +
+                            "viewer_selected_target, rater_selected_target, viewer_name, rater_name, " +
                             "arv_question, arv_answer_1, arv_answer_2, session_type" +
                             ") " +
                             "VALUES " +
@@ -415,12 +419,12 @@ namespace OpenPsiLabWinForms.DataSources
                             "@longitude, @start_datetime_local, " +
                             "@start_datetime_utc, @start_datetime_sidereal, @end_datetime_local, " +
                             "@end_datetime_utc, @end_datetime_sidereal, @viewer_selected_image_uuid, " +
-                            "@judge_selected_image_uuid, @target_image_uuid, @viewer_selected_datetime_local, " +
-                            "@judge_selected_datetime_local, @targeted_datetime_local, @viewer_selected_datetime_utc, " +
-                            "@judge_selected_datetime_utc, @targeted_datetime_utc, @viewer_selected_datetime_sidereal, " +
-                            "@judge_selected_datetime_sidereal, @targeted_datetime_sidereal, " +
+                            "@rater_selected_image_uuid, @target_image_uuid, @viewer_selected_datetime_local, " +
+                            "@rater_selected_datetime_local, @targeted_datetime_local, @viewer_selected_datetime_utc, " +
+                            "@rater_selected_datetime_utc, @targeted_datetime_utc, @viewer_selected_datetime_sidereal, " +
+                            "@rater_selected_datetime_sidereal, @targeted_datetime_sidereal, " +
                             "@swx_overview_large_uuid, @notifications_in_effect_timeline_uuid, @screenshot_uuid, " +
-                            "@viewer_selected_target, @judge_selected_target, @viewer_name, @judge_name, " +
+                            "@viewer_selected_target, @rater_selected_target, @viewer_name, @rater_name, " +
                             "@arv_question, @arv_answer_1, @arv_answer_2, @session_type " +
                             ");";
                         command.ExecuteNonQuery();
@@ -498,23 +502,23 @@ namespace OpenPsiLabWinForms.DataSources
                             ((object)sp.EndDateTimeSidereal) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_selected_image_uuid",
                             ((object)sp.ViewerSelectedImageUUID.ToString()) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_image_uuid",
-                            ((object)sp.JudgeSelectedImageUUID.ToString()) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_image_uuid",
+                            ((object)sp.RaterSelectedImageUUID.ToString()) ?? DBNull.Value);
 
                         command.Parameters.AddWithValue("@viewer_selected_datetime_local",
                             ((object)sp.ViewerSelectedDateTimeLocal) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_datetime_local",
-                            ((object)sp.JudgeSelectedDateTimeLocal) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_datetime_local",
+                            ((object)sp.RaterSelectedDateTimeLocal) ?? DBNull.Value);
 
                         command.Parameters.AddWithValue("@viewer_selected_datetime_utc",
                             ((object)sp.ViewerSelectedDateTimeUTC) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_datetime_utc",
-                            ((object)sp.JudgeSelectedDateTimeUTC) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_datetime_utc",
+                            ((object)sp.RaterSelectedDateTimeUTC) ?? DBNull.Value);
 
                         command.Parameters.AddWithValue("@viewer_selected_datetime_sidereal",
                             ((object)sp.ViewerSelectedDateTimeSidereal) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_datetime_sidereal",
-                            ((object)sp.JudgeSelectedDateTimeSidereal) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_datetime_sidereal",
+                            ((object)sp.RaterSelectedDateTimeSidereal) ?? DBNull.Value);
 
                         command.Parameters.AddWithValue("@swx_overview_large_uuid",
                             ((object)sp.SWXOverviewLargeUUID) ?? DBNull.Value);
@@ -524,12 +528,16 @@ namespace OpenPsiLabWinForms.DataSources
                             ((object)sp.ScreenshotUUID.ToString()) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_selected_target",
                             ((object)sp.ViewerSelectedTarget) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_selected_target",
-                            ((object)sp.JudgeSelectedTarget) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_selected_target",
+                            ((object)sp.RaterSelectedTarget) ?? DBNull.Value);
                         command.Parameters.AddWithValue("@viewer_name",
                             ((object)sp.ViewerName) ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@judge_name",
-                            ((object)sp.JudgeName) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@rater_name",
+                            ((object)sp.RaterName) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@tasker_name",
+                            ((object)sp.RaterName) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@monitor_name",
+                            ((object)sp.RaterName) ?? DBNull.Value);
 
                         command.Parameters.AddWithValue("@targeted",
                             ((object)sp.Targeted) ?? DBNull.Value);

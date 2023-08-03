@@ -42,7 +42,7 @@ namespace OpenPsiLabWinForms.Models
         public bool Image2IsTarget { get; set; }
         public string TargetImageUUID { get; set; }
         public string ViewerSelectedImageUUID { get; set; }
-        public string JudgeSelectedImageUUID { get; set; }
+        public string RaterSelectedImageUUID { get; set; }
         public string StartDateTimeLocal { get; set; }
         public string StartDateTimeUTC { get; set; }
         public string StartDateTimeSidereal { get; set; }
@@ -52,20 +52,20 @@ namespace OpenPsiLabWinForms.Models
         public string ViewerSelectedDateTimeLocal { get; set; }
         public string ViewerSelectedDateTimeUTC { get; set; }
         public string ViewerSelectedDateTimeSidereal { get; set; }
-        public string JudgeSelectedDateTimeLocal { get; set; }
-        public string JudgeSelectedDateTimeUTC { get; set; }
-        public string JudgeSelectedDateTimeSidereal { get; set; }
+        public string RaterSelectedDateTimeLocal { get; set; }
+        public string RaterSelectedDateTimeUTC { get; set; }
+        public string RaterSelectedDateTimeSidereal { get; set; }
         public string TargetedDateTimeLocal { get; set; }
         public string TargetedDateTimeUTC { get; set; }
         public string TargetedDateTimeSidereal { get; set; }
         public int ViewerSelectedIndex { get; set; }
-        public int JudgeSelectedIndex { get; set; }
+        public int RaterSelectedIndex { get; set; }
         public double Longitude { get; set; }
         public string SWXOverviewLargeUUID { get; set; }
         public string NotificationsInEffectTimelineUUID { get; set; }
         public string ScreenshotUUID { get; set; }
         public string ViewerSelectedTarget { get; set; }
-        public string JudgeSelectedTarget { get; set; }
+        public string RaterSelectedTarget { get; set; }
         public int TargetIndex { get; set; }
         private ImageUtilities imageUtils;
         private OPLConfiguration oplConfig;
@@ -89,7 +89,7 @@ namespace OpenPsiLabWinForms.Models
             Image1Notes = sp.Image1.Notes;
             Image1UUID = sp.Image1.UUID.ToString();
             Image1IsViewerSelected = sp.Image1.IsViewerSelected;
-            Image1IsMontoriSelectd = sp.Image1.IsJudgeSelected;
+            Image1IsMontoriSelectd = sp.Image1.IsRaterSelected;
             Image1IsTarget = sp.Image1.IsTarget;
 
             TargetID = sp.TargetID;
@@ -102,11 +102,11 @@ namespace OpenPsiLabWinForms.Models
             Image2Notes = sp.Image2.Notes;
             Image2UUID = sp.Image2.UUID.ToString();
             Image2IsViewerSelected = sp.Image2.IsViewerSelected;
-            Image2IsMontoriSelectd = sp.Image2.IsJudgeSelected;
+            Image2IsMontoriSelectd = sp.Image2.IsRaterSelected;
             Image2IsTarget = sp.Image2.IsTarget;
             TargetImageUUID = sp.TargetImageUUID.ToString();
             ViewerSelectedImageUUID = sp.ViewerSelectedImageUUID.ToString();
-            JudgeSelectedImageUUID = sp.JudgeSelectedImageUUID.ToString();
+            RaterSelectedImageUUID = sp.RaterSelectedImageUUID.ToString();
             StartDateTimeLocal = sp.StartDateTimeLocal.ToString();
             StartDateTimeUTC = sp.StartDateTimeUTC.ToString();
             EndDateTimeSidereal = sp.EndDateTimeSidereal.ToLongTimeString();
@@ -116,21 +116,21 @@ namespace OpenPsiLabWinForms.Models
             ViewerSelectedDateTimeLocal = sp.ViewerSelectedDateTimeLocal.ToString();
             ViewerSelectedDateTimeUTC = sp.ViewerSelectedDateTimeUTC.ToString();
             ViewerSelectedDateTimeSidereal = sp.ViewerSelectedDateTimeSidereal.ToString();
-            JudgeSelectedDateTimeLocal = sp.JudgeSelectedDateTimeLocal.ToString();
-            JudgeSelectedDateTimeUTC = sp.JudgeSelectedDateTimeUTC.ToString();
-            JudgeSelectedDateTimeSidereal = sp.JudgeSelectedDateTimeSidereal.ToString();
+            RaterSelectedDateTimeLocal = sp.RaterSelectedDateTimeLocal.ToString();
+            RaterSelectedDateTimeUTC = sp.RaterSelectedDateTimeUTC.ToString();
+            RaterSelectedDateTimeSidereal = sp.RaterSelectedDateTimeSidereal.ToString();
             TargetedDateTimeLocal = sp.TargetedDateTimeLocal.ToString();
             TargetedDateTimeUTC = sp.TargetedDateTimeUTC.ToString();
             TargetedDateTimeSidereal = sp.TargetedDateTimeSidereal.ToString();
             ViewerSelectedIndex = sp.ViewerSelectedIndex;
-            JudgeSelectedIndex = sp.JudgeSelectedIndex;
+            RaterSelectedIndex = sp.RaterSelectedIndex;
             Longitude = sp.Longitude;
             SWXOverviewLargeUUID = sp.SWXOverviewLargeUUID;
             NotificationsInEffectTimelineUUID = 
                 sp.NotificationsInEffectTimelineUUID;
             ScreenshotUUID = sp.ScreenshotUUID.ToString();
             ViewerSelectedTarget = sp.ViewerSelectedTarget;
-            JudgeSelectedTarget = sp.JudgeSelectedTarget;
+            RaterSelectedTarget = sp.RaterSelectedTarget;
             TargetIndex = sp.TargetIndex;
 
         }

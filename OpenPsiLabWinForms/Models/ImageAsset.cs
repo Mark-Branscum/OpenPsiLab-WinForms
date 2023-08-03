@@ -59,7 +59,7 @@ namespace OpenPsiLabWinForms
         public string FileName { get; set; }
         public string Notes { get; set; }
         public bool IsViewerSelected { get; set; }
-        public bool IsJudgeSelected { get; set; }
+        public bool IsRaterSelected { get; set; }
         public bool IsTarget { get; set; }
         public ImageFormat ParseImageFormat(string str)
         {

@@ -40,13 +40,13 @@
             this.imagesSplitContainer = new System.Windows.Forms.SplitContainer();
             this.arvAnswer1TextBox = new System.Windows.Forms.TextBox();
             this.picBox1TargetTextBox = new System.Windows.Forms.TextBox();
-            this.judgeSelect1Button = new System.Windows.Forms.Button();
+            this.raterSelect1Button = new System.Windows.Forms.Button();
             this.picBox1IDtextBox = new System.Windows.Forms.TextBox();
             this.viewerSelect1Button = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.arvAnswer2textBox = new System.Windows.Forms.TextBox();
             this.picBox2TargetTextBox = new System.Windows.Forms.TextBox();
-            this.judgeSelect2Button = new System.Windows.Forms.Button();
+            this.raterSelect2Button = new System.Windows.Forms.Button();
             this.picBox2IDtextBox = new System.Windows.Forms.TextBox();
             this.viewerSelect2Button = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -65,12 +65,16 @@
             this.exportButton = new System.Windows.Forms.Button();
             this.viewerNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.judgeNameTextBox = new System.Windows.Forms.TextBox();
+            this.raterNameTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.arvCheckBox = new System.Windows.Forms.CheckBox();
             this.arvQuestionTextBox = new System.Windows.Forms.TextBox();
             this.setImageButton = new System.Windows.Forms.Button();
             this.arvQuestionLabel = new System.Windows.Forms.Label();
+            this.monitorNameTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.taskerNameTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imagesSplitContainer)).BeginInit();
             this.imagesSplitContainer.Panel1.SuspendLayout();
             this.imagesSplitContainer.Panel2.SuspendLayout();
@@ -84,7 +88,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(328, 515);
+            this.label2.Location = new System.Drawing.Point(565, 605);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 2;
@@ -94,9 +98,9 @@
             // 
             this.targetTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.targetTextBox.Enabled = false;
-            this.targetTextBox.Location = new System.Drawing.Point(421, 512);
+            this.targetTextBox.Location = new System.Drawing.Point(658, 602);
             this.targetTextBox.Name = "targetTextBox";
-            this.targetTextBox.Size = new System.Drawing.Size(213, 20);
+            this.targetTextBox.Size = new System.Drawing.Size(175, 20);
             this.targetTextBox.TabIndex = 2;
             this.targetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.targetTextBox.TextChanged += new System.EventHandler(this.targetTextBox_TextChanged);
@@ -104,7 +108,7 @@
             // resetButton
             // 
             this.resetButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.resetButton.Location = new System.Drawing.Point(12, 596);
+            this.resetButton.Location = new System.Drawing.Point(111, 686);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(90, 23);
             this.resetButton.TabIndex = 15;
@@ -115,7 +119,7 @@
             // getTargetButton
             // 
             this.getTargetButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.getTargetButton.Location = new System.Drawing.Point(301, 596);
+            this.getTargetButton.Location = new System.Drawing.Point(400, 686);
             this.getTargetButton.Name = "getTargetButton";
             this.getTargetButton.Size = new System.Drawing.Size(90, 23);
             this.getTargetButton.TabIndex = 8;
@@ -127,7 +131,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 574);
+            this.label3.Location = new System.Drawing.Point(119, 664);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 7;
@@ -137,7 +141,7 @@
             // 
             this.imagesCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.imagesCheckBox.AutoSize = true;
-            this.imagesCheckBox.Location = new System.Drawing.Point(64, 573);
+            this.imagesCheckBox.Location = new System.Drawing.Point(163, 663);
             this.imagesCheckBox.Name = "imagesCheckBox";
             this.imagesCheckBox.Size = new System.Drawing.Size(74, 17);
             this.imagesCheckBox.TabIndex = 9;
@@ -149,7 +153,7 @@
             // 
             this.idsCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.idsCheckBox.AutoSize = true;
-            this.idsCheckBox.Location = new System.Drawing.Point(236, 573);
+            this.idsCheckBox.Location = new System.Drawing.Point(335, 663);
             this.idsCheckBox.Name = "idsCheckBox";
             this.idsCheckBox.Size = new System.Drawing.Size(42, 17);
             this.idsCheckBox.TabIndex = 12;
@@ -161,7 +165,7 @@
             // 
             this.selectionCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.selectionCheckBox.AutoSize = true;
-            this.selectionCheckBox.Location = new System.Drawing.Point(285, 573);
+            this.selectionCheckBox.Location = new System.Drawing.Point(384, 663);
             this.selectionCheckBox.Name = "selectionCheckBox";
             this.selectionCheckBox.Size = new System.Drawing.Size(70, 17);
             this.selectionCheckBox.TabIndex = 10;
@@ -173,7 +177,7 @@
             // 
             this.targetCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.targetCheckBox.AutoSize = true;
-            this.targetCheckBox.Location = new System.Drawing.Point(360, 573);
+            this.targetCheckBox.Location = new System.Drawing.Point(459, 663);
             this.targetCheckBox.Name = "targetCheckBox";
             this.targetCheckBox.Size = new System.Drawing.Size(57, 17);
             this.targetCheckBox.TabIndex = 11;
@@ -194,7 +198,7 @@
             // 
             this.imagesSplitContainer.Panel1.Controls.Add(this.arvAnswer1TextBox);
             this.imagesSplitContainer.Panel1.Controls.Add(this.picBox1TargetTextBox);
-            this.imagesSplitContainer.Panel1.Controls.Add(this.judgeSelect1Button);
+            this.imagesSplitContainer.Panel1.Controls.Add(this.raterSelect1Button);
             this.imagesSplitContainer.Panel1.Controls.Add(this.picBox1IDtextBox);
             this.imagesSplitContainer.Panel1.Controls.Add(this.viewerSelect1Button);
             this.imagesSplitContainer.Panel1.Controls.Add(this.pictureBox1);
@@ -203,12 +207,12 @@
             // 
             this.imagesSplitContainer.Panel2.Controls.Add(this.arvAnswer2textBox);
             this.imagesSplitContainer.Panel2.Controls.Add(this.picBox2TargetTextBox);
-            this.imagesSplitContainer.Panel2.Controls.Add(this.judgeSelect2Button);
+            this.imagesSplitContainer.Panel2.Controls.Add(this.raterSelect2Button);
             this.imagesSplitContainer.Panel2.Controls.Add(this.picBox2IDtextBox);
             this.imagesSplitContainer.Panel2.Controls.Add(this.viewerSelect2Button);
             this.imagesSplitContainer.Panel2.Controls.Add(this.pictureBox2);
-            this.imagesSplitContainer.Size = new System.Drawing.Size(622, 404);
-            this.imagesSplitContainer.SplitterDistance = 308;
+            this.imagesSplitContainer.Size = new System.Drawing.Size(820, 494);
+            this.imagesSplitContainer.SplitterDistance = 406;
             this.imagesSplitContainer.TabIndex = 13;
             // 
             // arvAnswer1TextBox
@@ -216,7 +220,7 @@
             this.arvAnswer1TextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.arvAnswer1TextBox.Enabled = false;
             this.arvAnswer1TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.arvAnswer1TextBox.Location = new System.Drawing.Point(52, 273);
+            this.arvAnswer1TextBox.Location = new System.Drawing.Point(101, 363);
             this.arvAnswer1TextBox.Name = "arvAnswer1TextBox";
             this.arvAnswer1TextBox.Size = new System.Drawing.Size(201, 24);
             this.arvAnswer1TextBox.TabIndex = 0;
@@ -228,29 +232,29 @@
             // 
             this.picBox1TargetTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBox1TargetTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox1TargetTextBox.Location = new System.Drawing.Point(5, 344);
+            this.picBox1TargetTextBox.Location = new System.Drawing.Point(54, 434);
             this.picBox1TargetTextBox.Name = "picBox1TargetTextBox";
             this.picBox1TargetTextBox.ReadOnly = true;
             this.picBox1TargetTextBox.Size = new System.Drawing.Size(298, 20);
             this.picBox1TargetTextBox.TabIndex = 5;
             this.picBox1TargetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // judgeSelect1Button
+            // raterSelect1Button
             // 
-            this.judgeSelect1Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.judgeSelect1Button.Location = new System.Drawing.Point(156, 370);
-            this.judgeSelect1Button.Name = "judgeSelect1Button";
-            this.judgeSelect1Button.Size = new System.Drawing.Size(127, 23);
-            this.judgeSelect1Button.TabIndex = 2;
-            this.judgeSelect1Button.Text = "Judge Select";
-            this.judgeSelect1Button.UseVisualStyleBackColor = true;
-            this.judgeSelect1Button.Click += new System.EventHandler(this.judgeSelect1Button_Click);
+            this.raterSelect1Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.raterSelect1Button.Location = new System.Drawing.Point(205, 460);
+            this.raterSelect1Button.Name = "raterSelect1Button";
+            this.raterSelect1Button.Size = new System.Drawing.Size(127, 23);
+            this.raterSelect1Button.TabIndex = 2;
+            this.raterSelect1Button.Text = "Rater Select";
+            this.raterSelect1Button.UseVisualStyleBackColor = true;
+            this.raterSelect1Button.Click += new System.EventHandler(this.raterSelect1Button_Click);
             // 
             // picBox1IDtextBox
             // 
             this.picBox1IDtextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBox1IDtextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox1IDtextBox.Location = new System.Drawing.Point(5, 318);
+            this.picBox1IDtextBox.Location = new System.Drawing.Point(54, 408);
             this.picBox1IDtextBox.Name = "picBox1IDtextBox";
             this.picBox1IDtextBox.ReadOnly = true;
             this.picBox1IDtextBox.Size = new System.Drawing.Size(298, 20);
@@ -261,7 +265,7 @@
             // viewerSelect1Button
             // 
             this.viewerSelect1Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.viewerSelect1Button.Location = new System.Drawing.Point(25, 370);
+            this.viewerSelect1Button.Location = new System.Drawing.Point(74, 460);
             this.viewerSelect1Button.Name = "viewerSelect1Button";
             this.viewerSelect1Button.Size = new System.Drawing.Size(125, 23);
             this.viewerSelect1Button.TabIndex = 1;
@@ -276,7 +280,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(300, 308);
+            this.pictureBox1.Size = new System.Drawing.Size(398, 398);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -287,7 +291,7 @@
             this.arvAnswer2textBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.arvAnswer2textBox.Enabled = false;
             this.arvAnswer2textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.arvAnswer2textBox.Location = new System.Drawing.Point(54, 273);
+            this.arvAnswer2textBox.Location = new System.Drawing.Point(104, 363);
             this.arvAnswer2textBox.Name = "arvAnswer2textBox";
             this.arvAnswer2textBox.Size = new System.Drawing.Size(200, 24);
             this.arvAnswer2textBox.TabIndex = 0;
@@ -299,29 +303,29 @@
             // 
             this.picBox2TargetTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBox2TargetTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox2TargetTextBox.Location = new System.Drawing.Point(5, 344);
+            this.picBox2TargetTextBox.Location = new System.Drawing.Point(55, 434);
             this.picBox2TargetTextBox.Name = "picBox2TargetTextBox";
             this.picBox2TargetTextBox.ReadOnly = true;
             this.picBox2TargetTextBox.Size = new System.Drawing.Size(300, 20);
             this.picBox2TargetTextBox.TabIndex = 6;
             this.picBox2TargetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // judgeSelect2Button
+            // raterSelect2Button
             // 
-            this.judgeSelect2Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.judgeSelect2Button.Location = new System.Drawing.Point(157, 370);
-            this.judgeSelect2Button.Name = "judgeSelect2Button";
-            this.judgeSelect2Button.Size = new System.Drawing.Size(127, 23);
-            this.judgeSelect2Button.TabIndex = 2;
-            this.judgeSelect2Button.Text = "Judge Select";
-            this.judgeSelect2Button.UseVisualStyleBackColor = true;
-            this.judgeSelect2Button.Click += new System.EventHandler(this.judgeSelect2Button_Click);
+            this.raterSelect2Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.raterSelect2Button.Location = new System.Drawing.Point(207, 460);
+            this.raterSelect2Button.Name = "raterSelect2Button";
+            this.raterSelect2Button.Size = new System.Drawing.Size(127, 23);
+            this.raterSelect2Button.TabIndex = 2;
+            this.raterSelect2Button.Text = "Rater Select";
+            this.raterSelect2Button.UseVisualStyleBackColor = true;
+            this.raterSelect2Button.Click += new System.EventHandler(this.raterSelect2Button_Click);
             // 
             // picBox2IDtextBox
             // 
             this.picBox2IDtextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBox2IDtextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox2IDtextBox.Location = new System.Drawing.Point(4, 318);
+            this.picBox2IDtextBox.Location = new System.Drawing.Point(54, 408);
             this.picBox2IDtextBox.Name = "picBox2IDtextBox";
             this.picBox2IDtextBox.ReadOnly = true;
             this.picBox2IDtextBox.Size = new System.Drawing.Size(301, 20);
@@ -332,7 +336,7 @@
             // viewerSelect2Button
             // 
             this.viewerSelect2Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.viewerSelect2Button.Location = new System.Drawing.Point(25, 370);
+            this.viewerSelect2Button.Location = new System.Drawing.Point(75, 460);
             this.viewerSelect2Button.Name = "viewerSelect2Button";
             this.viewerSelect2Button.Size = new System.Drawing.Size(126, 23);
             this.viewerSelect2Button.TabIndex = 1;
@@ -347,7 +351,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Location = new System.Drawing.Point(4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(301, 308);
+            this.pictureBox2.Size = new System.Drawing.Size(401, 398);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -362,7 +366,7 @@
             this.titleTextBox.Location = new System.Drawing.Point(12, 13);
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.ReadOnly = true;
-            this.titleTextBox.Size = new System.Drawing.Size(622, 24);
+            this.titleTextBox.Size = new System.Drawing.Size(820, 24);
             this.titleTextBox.TabIndex = 14;
             this.titleTextBox.Text = "Practice Session";
             this.titleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -370,7 +374,7 @@
             // getImagesButton
             // 
             this.getImagesButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.getImagesButton.Location = new System.Drawing.Point(108, 596);
+            this.getImagesButton.Location = new System.Drawing.Point(207, 686);
             this.getImagesButton.Name = "getImagesButton";
             this.getImagesButton.Size = new System.Drawing.Size(90, 23);
             this.getImagesButton.TabIndex = 7;
@@ -381,7 +385,7 @@
             // saveButton
             // 
             this.saveButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.saveButton.Location = new System.Drawing.Point(559, 596);
+            this.saveButton.Location = new System.Drawing.Point(658, 686);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 12;
@@ -398,7 +402,7 @@
             this.sessionUUIDTextBox.Location = new System.Drawing.Point(12, 44);
             this.sessionUUIDTextBox.Name = "sessionUUIDTextBox";
             this.sessionUUIDTextBox.ReadOnly = true;
-            this.sessionUUIDTextBox.Size = new System.Drawing.Size(622, 15);
+            this.sessionUUIDTextBox.Size = new System.Drawing.Size(820, 15);
             this.sessionUUIDTextBox.TabIndex = 17;
             this.sessionUUIDTextBox.Text = "ID:";
             this.sessionUUIDTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -408,7 +412,7 @@
             // 
             this.addFilesButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.addFilesButton.Enabled = false;
-            this.addFilesButton.Location = new System.Drawing.Point(559, 567);
+            this.addFilesButton.Location = new System.Drawing.Point(658, 657);
             this.addFilesButton.Name = "addFilesButton";
             this.addFilesButton.Size = new System.Drawing.Size(75, 23);
             this.addFilesButton.TabIndex = 6;
@@ -420,7 +424,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 519);
+            this.label1.Location = new System.Drawing.Point(15, 609);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 19;
@@ -430,9 +434,9 @@
             // 
             this.sessionNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.sessionNameTextBox.Enabled = false;
-            this.sessionNameTextBox.Location = new System.Drawing.Point(104, 512);
+            this.sessionNameTextBox.Location = new System.Drawing.Point(99, 602);
             this.sessionNameTextBox.Name = "sessionNameTextBox";
-            this.sessionNameTextBox.Size = new System.Drawing.Size(214, 20);
+            this.sessionNameTextBox.Size = new System.Drawing.Size(175, 20);
             this.sessionNameTextBox.TabIndex = 1;
             this.sessionNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.sessionNameTextBox.TextChanged += new System.EventHandler(this.sessionNameTextBox_TextChanged);
@@ -441,9 +445,9 @@
             // 
             this.sessionStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.randomSourceLabel});
-            this.sessionStatusStrip.Location = new System.Drawing.Point(0, 633);
+            this.sessionStatusStrip.Location = new System.Drawing.Point(0, 723);
             this.sessionStatusStrip.Name = "sessionStatusStrip";
-            this.sessionStatusStrip.Size = new System.Drawing.Size(646, 22);
+            this.sessionStatusStrip.Size = new System.Drawing.Size(844, 22);
             this.sessionStatusStrip.TabIndex = 22;
             this.sessionStatusStrip.Text = "statusStrip1";
             // 
@@ -458,7 +462,7 @@
             // 
             this.notesButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.notesButton.Enabled = false;
-            this.notesButton.Location = new System.Drawing.Point(478, 567);
+            this.notesButton.Location = new System.Drawing.Point(577, 657);
             this.notesButton.Name = "notesButton";
             this.notesButton.Size = new System.Drawing.Size(75, 23);
             this.notesButton.TabIndex = 5;
@@ -471,7 +475,7 @@
             this.targetImageCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.targetImageCheckBox.AutoSize = true;
             this.targetImageCheckBox.Enabled = false;
-            this.targetImageCheckBox.Location = new System.Drawing.Point(143, 573);
+            this.targetImageCheckBox.Location = new System.Drawing.Point(242, 663);
             this.targetImageCheckBox.Name = "targetImageCheckBox";
             this.targetImageCheckBox.Size = new System.Drawing.Size(89, 17);
             this.targetImageCheckBox.TabIndex = 15;
@@ -482,7 +486,7 @@
             // loadButton
             // 
             this.loadButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.loadButton.Location = new System.Drawing.Point(397, 596);
+            this.loadButton.Location = new System.Drawing.Point(496, 686);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(75, 23);
             this.loadButton.TabIndex = 14;
@@ -494,7 +498,7 @@
             // 
             this.exportButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.exportButton.Enabled = false;
-            this.exportButton.Location = new System.Drawing.Point(478, 596);
+            this.exportButton.Location = new System.Drawing.Point(577, 686);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
             this.exportButton.TabIndex = 13;
@@ -506,9 +510,9 @@
             // 
             this.viewerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.viewerNameTextBox.Enabled = false;
-            this.viewerNameTextBox.Location = new System.Drawing.Point(104, 538);
+            this.viewerNameTextBox.Location = new System.Drawing.Point(374, 602);
             this.viewerNameTextBox.Name = "viewerNameTextBox";
-            this.viewerNameTextBox.Size = new System.Drawing.Size(214, 20);
+            this.viewerNameTextBox.Size = new System.Drawing.Size(175, 20);
             this.viewerNameTextBox.TabIndex = 3;
             this.viewerNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.viewerNameTextBox.TextChanged += new System.EventHandler(this.viewerNameTextBox_TextChanged);
@@ -517,39 +521,39 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 541);
+            this.label4.Location = new System.Drawing.Point(15, 631);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 13);
+            this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 30;
-            this.label4.Text = "Viewer Name:";
+            this.label4.Text = "Tasker Name:";
             // 
-            // judgeNameTextBox
+            // raterNameTextBox
             // 
-            this.judgeNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.judgeNameTextBox.Enabled = false;
-            this.judgeNameTextBox.Location = new System.Drawing.Point(421, 538);
-            this.judgeNameTextBox.Name = "judgeNameTextBox";
-            this.judgeNameTextBox.Size = new System.Drawing.Size(212, 20);
-            this.judgeNameTextBox.TabIndex = 4;
-            this.judgeNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.judgeNameTextBox.TextChanged += new System.EventHandler(this.judgeNameTextBox_TextChanged);
+            this.raterNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.raterNameTextBox.Enabled = false;
+            this.raterNameTextBox.Location = new System.Drawing.Point(658, 628);
+            this.raterNameTextBox.Name = "raterNameTextBox";
+            this.raterNameTextBox.Size = new System.Drawing.Size(175, 20);
+            this.raterNameTextBox.TabIndex = 4;
+            this.raterNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.raterNameTextBox.TextChanged += new System.EventHandler(this.raterNameTextBox_TextChanged);
             // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(328, 541);
+            this.label5.Location = new System.Drawing.Point(565, 631);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 27;
-            this.label5.Text = "Judge Name:";
+            this.label5.Text = "Rater Name:";
             // 
             // arvCheckBox
             // 
             this.arvCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.arvCheckBox.AutoSize = true;
             this.arvCheckBox.Enabled = false;
-            this.arvCheckBox.Location = new System.Drawing.Point(424, 573);
+            this.arvCheckBox.Location = new System.Drawing.Point(523, 663);
             this.arvCheckBox.Name = "arvCheckBox";
             this.arvCheckBox.Size = new System.Drawing.Size(48, 17);
             this.arvCheckBox.TabIndex = 32;
@@ -565,7 +569,7 @@
             this.arvQuestionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.arvQuestionTextBox.Location = new System.Drawing.Point(132, 67);
             this.arvQuestionTextBox.Name = "arvQuestionTextBox";
-            this.arvQuestionTextBox.Size = new System.Drawing.Size(503, 24);
+            this.arvQuestionTextBox.Size = new System.Drawing.Size(701, 24);
             this.arvQuestionTextBox.TabIndex = 0;
             this.arvQuestionTextBox.Visible = false;
             this.arvQuestionTextBox.TextChanged += new System.EventHandler(this.arvQuestionTextBox_TextChanged);
@@ -573,7 +577,7 @@
             // setImageButton
             // 
             this.setImageButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.setImageButton.Location = new System.Drawing.Point(205, 596);
+            this.setImageButton.Location = new System.Drawing.Point(304, 686);
             this.setImageButton.Name = "setImageButton";
             this.setImageButton.Size = new System.Drawing.Size(90, 23);
             this.setImageButton.TabIndex = 34;
@@ -592,18 +596,64 @@
             this.arvQuestionLabel.Text = "ARV Question:   ";
             this.arvQuestionLabel.Visible = false;
             // 
+            // monitorNameTextBox
+            // 
+            this.monitorNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.monitorNameTextBox.Enabled = false;
+            this.monitorNameTextBox.Location = new System.Drawing.Point(374, 628);
+            this.monitorNameTextBox.Name = "monitorNameTextBox";
+            this.monitorNameTextBox.Size = new System.Drawing.Size(175, 20);
+            this.monitorNameTextBox.TabIndex = 37;
+            this.monitorNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.monitorNameTextBox.TextChanged += new System.EventHandler(this.monitorNameTextBox_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(290, 631);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Monitor Name:";
+            // 
+            // taskerNameTextBox
+            // 
+            this.taskerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.taskerNameTextBox.Enabled = false;
+            this.taskerNameTextBox.Location = new System.Drawing.Point(99, 628);
+            this.taskerNameTextBox.Name = "taskerNameTextBox";
+            this.taskerNameTextBox.Size = new System.Drawing.Size(175, 20);
+            this.taskerNameTextBox.TabIndex = 36;
+            this.taskerNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taskerNameTextBox.TextChanged += new System.EventHandler(this.taskerNameTextBox_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(290, 609);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 38;
+            this.label7.Text = "Viewer Name:";
+            // 
             // SessionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 655);
+            this.ClientSize = new System.Drawing.Size(844, 745);
+            this.Controls.Add(this.monitorNameTextBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.taskerNameTextBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.arvQuestionLabel);
             this.Controls.Add(this.setImageButton);
             this.Controls.Add(this.arvQuestionTextBox);
             this.Controls.Add(this.arvCheckBox);
             this.Controls.Add(this.viewerNameTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.judgeNameTextBox);
+            this.Controls.Add(this.raterNameTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.exportButton);
             this.Controls.Add(this.loadButton);
@@ -669,8 +719,8 @@
         private System.Windows.Forms.Button getImagesButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.TextBox sessionUUIDTextBox;
-        private System.Windows.Forms.Button judgeSelect1Button;
-        private System.Windows.Forms.Button judgeSelect2Button;
+        private System.Windows.Forms.Button raterSelect1Button;
+        private System.Windows.Forms.Button raterSelect2Button;
         private System.Windows.Forms.TextBox picBox1TargetTextBox;
         private System.Windows.Forms.TextBox picBox2TargetTextBox;
         private System.Windows.Forms.Button addFilesButton;
@@ -684,7 +734,7 @@
         private System.Windows.Forms.Button exportButton;
         private System.Windows.Forms.TextBox viewerNameTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox judgeNameTextBox;
+        private System.Windows.Forms.TextBox raterNameTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox arvCheckBox;
         private System.Windows.Forms.TextBox arvQuestionTextBox;
@@ -692,5 +742,9 @@
         private System.Windows.Forms.TextBox arvAnswer2textBox;
         private System.Windows.Forms.Button setImageButton;
         private System.Windows.Forms.Label arvQuestionLabel;
+        private System.Windows.Forms.TextBox monitorNameTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox taskerNameTextBox;
+        private System.Windows.Forms.Label label7;
     }
 }

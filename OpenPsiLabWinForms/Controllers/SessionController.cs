@@ -243,7 +243,7 @@ namespace OpenPsiLabWinForms.Controllers
                     //Im1.ImageBitmap.Save(imagePath);
                     Im1.ImageBitmap.Save(imagePath, Im1.ImageFileFormat);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //Error resaving bitmap to the original file it was
                     //created from. So, there is no need to save it again.
@@ -260,7 +260,7 @@ namespace OpenPsiLabWinForms.Controllers
                 {
                     Im2.ImageBitmap.Save(imagePath, Im2.ImageFileFormat);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //Error resaving bitmap to the original file it was
                     //created from. So, there is no need to save it again.

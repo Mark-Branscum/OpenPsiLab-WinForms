@@ -306,9 +306,9 @@ namespace OpenPsiLabWinForms.Models
             sec.TargetImage = false;
             sec.SessionName = true;
             sec.ViewerName = true;
-            sec.JudgeName = true;
+            sec.RaterName = true;
             sec.ViewerSelected = false;
-            sec.JudgeSelected = false;
+            sec.RaterSelected = false;
             sec.TargetSelected = false;
             sec.Screenshot = false;
             sec.Notes = false;

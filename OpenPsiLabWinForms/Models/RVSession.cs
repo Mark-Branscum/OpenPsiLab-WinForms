@@ -99,7 +99,7 @@ namespace OpenPsiLabWinForms.Models
                 return null;
             }
         }
-        public Guid? JudgeSelectedImageUUID
+        public Guid? RaterSelectedImageUUID
         {
             get
             {
@@ -107,7 +107,7 @@ namespace OpenPsiLabWinForms.Models
                     return null;
                 foreach (ImageAsset image in ImagesArray)
                 {
-                    if (image.IsJudgeSelected)
+                    if (image.IsRaterSelected)
                     {
                         return image.UUID;
                     }
@@ -205,34 +205,34 @@ namespace OpenPsiLabWinForms.Models
                 return _viewerSelectedDateTimeSidereal;
             }
         }
-        private DateTimeOffset _judgeSelectedDateTimeLocal;
-        public DateTimeOffset JudgeSelectedDateTimeLocal
+        private DateTimeOffset _raterSelectedDateTimeLocal;
+        public DateTimeOffset RaterSelectedDateTimeLocal
         {
             get
             {
-                return _judgeSelectedDateTimeLocal;
+                return _raterSelectedDateTimeLocal;
             }
             set
             {
-                _judgeSelectedDateTimeLocal = value;
-                _judgeSelectedDateTimeUTC = value.ToUniversalTime();
-                _judgeSelectedDateTimeSidereal = SideUtils.getSiderealTime(_judgeSelectedDateTimeUTC, Longitude);
+                _raterSelectedDateTimeLocal = value;
+                _raterSelectedDateTimeUTC = value.ToUniversalTime();
+                _raterSelectedDateTimeSidereal = SideUtils.getSiderealTime(_raterSelectedDateTimeUTC, Longitude);
             }
         }
-        private DateTimeOffset _judgeSelectedDateTimeUTC;
-        public DateTimeOffset JudgeSelectedDateTimeUTC
+        private DateTimeOffset _raterSelectedDateTimeUTC;
+        public DateTimeOffset RaterSelectedDateTimeUTC
         {
             get
             {
-                return _judgeSelectedDateTimeUTC;
+                return _raterSelectedDateTimeUTC;
             }
         }
-        private DateTime _judgeSelectedDateTimeSidereal;
-        public DateTime JudgeSelectedDateTimeSidereal
+        private DateTime _raterSelectedDateTimeSidereal;
+        public DateTime RaterSelectedDateTimeSidereal
         {
             get
             {
-                return _judgeSelectedDateTimeSidereal;
+                return _raterSelectedDateTimeSidereal;
             }
         }
         private DateTimeOffset _targetedDateTimeLocal;
@@ -306,12 +306,12 @@ namespace OpenPsiLabWinForms.Models
                         ImagesArray[0].IsViewerSelected = false;
                         ImagesArray[1].IsViewerSelected = false;
                     }
-                    SetViewerJudgeSelected();
+                    SetViewerRaterSelected();
                     ViewerSelectedDateTimeLocal = DateTimeOffset.Now;
                 }
             }
         }
-        public int JudgeSelectedIndex
+        public int RaterSelectedIndex
         {
             get
             {
@@ -319,11 +319,11 @@ namespace OpenPsiLabWinForms.Models
                     return -1;
                 if (ImagesArray[0] == null || ImagesArray[1] == null)
                     return -1;
-                if (ImagesArray[0].IsJudgeSelected)
+                if (ImagesArray[0].IsRaterSelected)
                 {
                     return 1;
                 }
-                else if (ImagesArray[1].IsJudgeSelected)
+                else if (ImagesArray[1].IsRaterSelected)
                 {
                     return 2;
                 }
@@ -338,21 +338,21 @@ namespace OpenPsiLabWinForms.Models
                     return;
                 if (value == 1)
                 {
-                    ImagesArray[0].IsJudgeSelected = true;
-                    ImagesArray[1].IsJudgeSelected = false;
+                    ImagesArray[0].IsRaterSelected = true;
+                    ImagesArray[1].IsRaterSelected = false;
                 }
                 else if (value == 2)
                 {
-                    ImagesArray[0].IsJudgeSelected = false;
-                    ImagesArray[1].IsJudgeSelected = true;
+                    ImagesArray[0].IsRaterSelected = false;
+                    ImagesArray[1].IsRaterSelected = true;
                 }
                 else
                 {
-                    ImagesArray[0].IsJudgeSelected = false;
-                    ImagesArray[1].IsJudgeSelected = false;
+                    ImagesArray[0].IsRaterSelected = false;
+                    ImagesArray[1].IsRaterSelected = false;
                 }
-                SetViewerJudgeSelected();
-                JudgeSelectedDateTimeLocal = DateTimeOffset.Now;
+                SetViewerRaterSelected();
+                RaterSelectedDateTimeLocal = DateTimeOffset.Now;
             }
         }
         public double Longitude { get; set; }
@@ -380,7 +380,7 @@ namespace OpenPsiLabWinForms.Models
         public string NotificationsInEffectTimelineUUID { get; set; }
         public Guid? ScreenshotUUID { get; set; }
         public string ViewerSelectedTarget { get; set; }
-        public string JudgeSelectedTarget { get; set; }
+        public string RaterSelectedTarget { get; set; }
         public int TargetIndex
         {
             get
@@ -425,13 +425,15 @@ namespace OpenPsiLabWinForms.Models
                     ImagesArray[1].IsTarget = false;
                     Targeted = "false";
                 }
-                SetViewerJudgeSelected();
+                SetViewerRaterSelected();
                 TargetedDateTimeLocal = DateTimeOffset.Now;
             }
         }
         public string Targeted { get; set; } = "false";
         public string ViewerName { get; set; }
-        public string JudgeName { get; set; }
+        public string RaterName { get; set; }
+        public string TaskerName { get; set; }
+        public string MonitorName { get; set; }
         public string ARVQuestion { get; set; }
         public string ARVAnswer1 { get; set; }
         public string ARVAnswer2 { get; set; }
@@ -446,7 +448,7 @@ namespace OpenPsiLabWinForms.Models
             StartTime,
             EndTime,
             ViewerSelectedTime,
-            JudgeSelectedTime,
+            RaterSelectedTime,
             TargetedTime
         }
 
@@ -501,34 +503,34 @@ namespace OpenPsiLabWinForms.Models
             }
             StringBuilder sb = new StringBuilder();
             sb.Append($"UUID{div}Name{div}Notes{div}TargetID{div}Targeted{div}TargetImageUUID{div}" +
-                      $"ViewerSelectedImageUUID{div}JudgeSelectedImageUUID{div}" +
+                      $"ViewerSelectedImageUUID{div}RaterSelectedImageUUID{div}" +
                       $"StartDateTimeLocal{div}StartDateTimeUTC{div}StartDateTimeSidereal{div}" +
                       $"EndDateTimeLocal{div}EndDateTimeUTC{div}EndDateTimeSidereal{div}" +
                       $"ViewerSelectedDateTimeLocal{div}ViewerSelectedDateTimeUTC{div}" +
-                      $"ViewerSelectedDateTimeSidereal{div}JudgeSelectedDateTimeLocal{div}" +
-                      $"JudgeSelectedDateTimeUTC{div}JudgeSelectedDateTimeSidereal{div}" +
+                      $"ViewerSelectedDateTimeSidereal{div}RaterSelectedDateTimeLocal{div}" +
+                      $"RaterSelectedDateTimeUTC{div}RaterSelectedDateTimeSidereal{div}" +
                       $"TargetedDateTimeLocal{div}" +
                       $"TargetedDateTimeUTC{div}TargetedDateTimeSidereal{div}Longitude{div}" +
                       $"SWXOverviewLargeUUID{div}NotificationsInEffectTimelineUUID{div}" +
-                      $"ScreenshotUUID{div}ViewerSelectedTarget{div}JudgeSelectedTarget{div}" +
-                      $"ViewerName{div}JudgeName\n");
+                      $"ScreenshotUUID{div}ViewerSelectedTarget{div}RaterSelectedTarget{div}" +
+                      $"ViewerName{div}RaterName{div}TaskerName{div}MonitorName\n");
             
             sb.Append($"{UUID}{div}{Name}{div}{Notes}{div}{TargetID}{div}{Targeted}{div}{TargetImageUUID}{div}" +
-                      $"{ViewerSelectedImageUUID}{div}{JudgeSelectedImageUUID}{div}" +
+                      $"{ViewerSelectedImageUUID}{div}{RaterSelectedImageUUID}{div}" +
                       $"{StartDateTimeLocal}{div}{StartDateTimeUTC}{div}{StartDateTimeSidereal}{div}" +
                       $"{EndDateTimeLocal}{div}{EndDateTimeUTC}{div}{EndDateTimeSidereal}{div}" +
                       $"{ViewerSelectedDateTimeLocal}{div}{ViewerSelectedDateTimeUTC}{div}" +
-                      $"{ViewerSelectedDateTimeSidereal}{div}{JudgeSelectedDateTimeLocal}{div}" +
-                      $"{JudgeSelectedDateTimeUTC}{div}{JudgeSelectedDateTimeSidereal}{div}" +
+                      $"{ViewerSelectedDateTimeSidereal}{div}{RaterSelectedDateTimeLocal}{div}" +
+                      $"{RaterSelectedDateTimeUTC}{div}{RaterSelectedDateTimeSidereal}{div}" +
                       $"{TargetedDateTimeLocal}{div}" +
                       $"{TargetedDateTimeUTC}{div}{TargetedDateTimeSidereal}{div}{Longitude}{div}" +
                       $"{SWXOverviewLargeUUID}{div}{NotificationsInEffectTimelineUUID}{div}" +
-                      $"{ScreenshotUUID}{div}{ViewerSelectedTarget}{div}{JudgeSelectedTarget}{div}" +
-                      $"{ViewerName}{div}{JudgeName}\n");
+                      $"{ScreenshotUUID}{div}{ViewerSelectedTarget}{div}{RaterSelectedTarget}{div}" +
+                      $"{ViewerName}{div}{RaterName}{div}{TaskerName}{div}{MonitorName}\n");
             return sb.ToString();
         }
 
-        public void SetViewerJudgeSelected()
+        public void SetViewerRaterSelected()
         {
             if (TargetImageUUID == null || ViewerSelectedImageUUID == null || 
                 TargetImageUUID == Guid.Empty || ViewerSelectedImageUUID == Guid.Empty)
@@ -542,17 +544,17 @@ namespace OpenPsiLabWinForms.Models
             {
                 ViewerSelectedTarget = "false";
             }
-            if (TargetImageUUID == null || JudgeSelectedImageUUID == null ||
-                TargetImageUUID == Guid.Empty || JudgeSelectedImageUUID == Guid.Empty)
+            if (TargetImageUUID == null || RaterSelectedImageUUID == null ||
+                TargetImageUUID == Guid.Empty || RaterSelectedImageUUID == Guid.Empty)
             {
-                JudgeSelectedTarget = "false";
-            } else if (TargetImageUUID == JudgeSelectedImageUUID)
+                RaterSelectedTarget = "false";
+            } else if (TargetImageUUID == RaterSelectedImageUUID)
             {
-                JudgeSelectedTarget = "true";
+                RaterSelectedTarget = "true";
             }
             else
             {
-                JudgeSelectedTarget = "false";
+                RaterSelectedTarget = "false";
             }
         }
     }

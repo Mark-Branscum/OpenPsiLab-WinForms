@@ -34,6 +34,7 @@
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.screenshotCheckBox = new System.Windows.Forms.CheckBox();
             this.dataExportGroupBox = new System.Windows.Forms.GroupBox();
+            this.filesCheckBox = new System.Windows.Forms.CheckBox();
             this.arvCheckBox = new System.Windows.Forms.CheckBox();
             this.geomagneticCheckBox = new System.Windows.Forms.CheckBox();
             this.imagesGroupBox = new System.Windows.Forms.GroupBox();
@@ -45,16 +46,17 @@
             this.setToDefaultsButton = new System.Windows.Forms.Button();
             this.filesButton = new System.Windows.Forms.Button();
             this.notesCheckBox = new System.Windows.Forms.CheckBox();
-            this.judgeNameCheckBox = new System.Windows.Forms.CheckBox();
+            this.raterNameCheckBox = new System.Windows.Forms.CheckBox();
             this.viewerNameCheckBox = new System.Windows.Forms.CheckBox();
             this.sessionNameCheckBox = new System.Windows.Forms.CheckBox();
-            this.judgeSelectedCheckBox = new System.Windows.Forms.CheckBox();
+            this.raterSelectedCheckBox = new System.Windows.Forms.CheckBox();
             this.viewerSelectedCheckBox = new System.Windows.Forms.CheckBox();
             this.targetSelectedCheckBox = new System.Windows.Forms.CheckBox();
             this.targetIDCheckBox = new System.Windows.Forms.CheckBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.filesCheckBox = new System.Windows.Forms.CheckBox();
+            this.taskerNameCheckBox = new System.Windows.Forms.CheckBox();
+            this.monitorNameCheckBox = new System.Windows.Forms.CheckBox();
             this.dataExportGroupBox.SuspendLayout();
             this.imagesGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +85,7 @@
             // exportButton
             // 
             this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportButton.Location = new System.Drawing.Point(336, 553);
+            this.exportButton.Location = new System.Drawing.Point(336, 594);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
             this.exportButton.TabIndex = 5;
@@ -94,7 +96,7 @@
             // screenshotCheckBox
             // 
             this.screenshotCheckBox.AutoSize = true;
-            this.screenshotCheckBox.Location = new System.Drawing.Point(6, 338);
+            this.screenshotCheckBox.Location = new System.Drawing.Point(6, 384);
             this.screenshotCheckBox.Name = "screenshotCheckBox";
             this.screenshotCheckBox.Size = new System.Drawing.Size(244, 17);
             this.screenshotCheckBox.TabIndex = 7;
@@ -105,6 +107,8 @@
             // 
             this.dataExportGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataExportGroupBox.Controls.Add(this.monitorNameCheckBox);
+            this.dataExportGroupBox.Controls.Add(this.taskerNameCheckBox);
             this.dataExportGroupBox.Controls.Add(this.filesCheckBox);
             this.dataExportGroupBox.Controls.Add(this.arvCheckBox);
             this.dataExportGroupBox.Controls.Add(this.geomagneticCheckBox);
@@ -113,20 +117,31 @@
             this.dataExportGroupBox.Controls.Add(this.setToDefaultsButton);
             this.dataExportGroupBox.Controls.Add(this.filesButton);
             this.dataExportGroupBox.Controls.Add(this.notesCheckBox);
-            this.dataExportGroupBox.Controls.Add(this.judgeNameCheckBox);
+            this.dataExportGroupBox.Controls.Add(this.raterNameCheckBox);
             this.dataExportGroupBox.Controls.Add(this.viewerNameCheckBox);
             this.dataExportGroupBox.Controls.Add(this.sessionNameCheckBox);
-            this.dataExportGroupBox.Controls.Add(this.judgeSelectedCheckBox);
+            this.dataExportGroupBox.Controls.Add(this.raterSelectedCheckBox);
             this.dataExportGroupBox.Controls.Add(this.viewerSelectedCheckBox);
             this.dataExportGroupBox.Controls.Add(this.targetSelectedCheckBox);
             this.dataExportGroupBox.Controls.Add(this.targetIDCheckBox);
             this.dataExportGroupBox.Controls.Add(this.screenshotCheckBox);
             this.dataExportGroupBox.Location = new System.Drawing.Point(12, 70);
             this.dataExportGroupBox.Name = "dataExportGroupBox";
-            this.dataExportGroupBox.Size = new System.Drawing.Size(399, 461);
+            this.dataExportGroupBox.Size = new System.Drawing.Size(399, 508);
             this.dataExportGroupBox.TabIndex = 8;
             this.dataExportGroupBox.TabStop = false;
             this.dataExportGroupBox.Text = "Data to Export";
+            // 
+            // filesCheckBox
+            // 
+            this.filesCheckBox.AutoSize = true;
+            this.filesCheckBox.Location = new System.Drawing.Point(6, 455);
+            this.filesCheckBox.Name = "filesCheckBox";
+            this.filesCheckBox.Size = new System.Drawing.Size(50, 17);
+            this.filesCheckBox.TabIndex = 26;
+            this.filesCheckBox.Text = "Files:";
+            this.filesCheckBox.UseVisualStyleBackColor = true;
+            this.filesCheckBox.CheckedChanged += new System.EventHandler(this.filesCheckBox_CheckedChanged);
             // 
             // arvCheckBox
             // 
@@ -143,7 +158,7 @@
             // geomagneticCheckBox
             // 
             this.geomagneticCheckBox.AutoSize = true;
-            this.geomagneticCheckBox.Location = new System.Drawing.Point(6, 386);
+            this.geomagneticCheckBox.Location = new System.Drawing.Point(6, 432);
             this.geomagneticCheckBox.Name = "geomagneticCheckBox";
             this.geomagneticCheckBox.Size = new System.Drawing.Size(133, 17);
             this.geomagneticCheckBox.TabIndex = 23;
@@ -219,7 +234,7 @@
             // setToDefaultsButton
             // 
             this.setToDefaultsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.setToDefaultsButton.Location = new System.Drawing.Point(282, 421);
+            this.setToDefaultsButton.Location = new System.Drawing.Point(282, 468);
             this.setToDefaultsButton.Name = "setToDefaultsButton";
             this.setToDefaultsButton.Size = new System.Drawing.Size(111, 23);
             this.setToDefaultsButton.TabIndex = 20;
@@ -230,7 +245,7 @@
             // filesButton
             // 
             this.filesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.filesButton.Location = new System.Drawing.Point(62, 405);
+            this.filesButton.Location = new System.Drawing.Point(62, 452);
             this.filesButton.Name = "filesButton";
             this.filesButton.Size = new System.Drawing.Size(53, 23);
             this.filesButton.TabIndex = 19;
@@ -241,24 +256,24 @@
             // notesCheckBox
             // 
             this.notesCheckBox.AutoSize = true;
-            this.notesCheckBox.Location = new System.Drawing.Point(6, 362);
+            this.notesCheckBox.Location = new System.Drawing.Point(6, 408);
             this.notesCheckBox.Name = "notesCheckBox";
             this.notesCheckBox.Size = new System.Drawing.Size(54, 17);
             this.notesCheckBox.TabIndex = 18;
             this.notesCheckBox.Text = "Notes";
             this.notesCheckBox.UseVisualStyleBackColor = true;
             // 
-            // judgeNameCheckBox
+            // raterNameCheckBox
             // 
-            this.judgeNameCheckBox.AutoSize = true;
-            this.judgeNameCheckBox.Checked = true;
-            this.judgeNameCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.judgeNameCheckBox.Location = new System.Drawing.Point(6, 246);
-            this.judgeNameCheckBox.Name = "judgeNameCheckBox";
-            this.judgeNameCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.judgeNameCheckBox.TabIndex = 16;
-            this.judgeNameCheckBox.Text = "Judge Name";
-            this.judgeNameCheckBox.UseVisualStyleBackColor = true;
+            this.raterNameCheckBox.AutoSize = true;
+            this.raterNameCheckBox.Checked = true;
+            this.raterNameCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.raterNameCheckBox.Location = new System.Drawing.Point(6, 292);
+            this.raterNameCheckBox.Name = "raterNameCheckBox";
+            this.raterNameCheckBox.Size = new System.Drawing.Size(83, 17);
+            this.raterNameCheckBox.TabIndex = 16;
+            this.raterNameCheckBox.Text = "Rater Name";
+            this.raterNameCheckBox.UseVisualStyleBackColor = true;
             // 
             // viewerNameCheckBox
             // 
@@ -284,20 +299,20 @@
             this.sessionNameCheckBox.Text = "Session Name";
             this.sessionNameCheckBox.UseVisualStyleBackColor = true;
             // 
-            // judgeSelectedCheckBox
+            // raterSelectedCheckBox
             // 
-            this.judgeSelectedCheckBox.AutoSize = true;
-            this.judgeSelectedCheckBox.Location = new System.Drawing.Point(6, 292);
-            this.judgeSelectedCheckBox.Name = "judgeSelectedCheckBox";
-            this.judgeSelectedCheckBox.Size = new System.Drawing.Size(102, 17);
-            this.judgeSelectedCheckBox.TabIndex = 13;
-            this.judgeSelectedCheckBox.Text = "Judge Selection";
-            this.judgeSelectedCheckBox.UseVisualStyleBackColor = true;
+            this.raterSelectedCheckBox.AutoSize = true;
+            this.raterSelectedCheckBox.Location = new System.Drawing.Point(6, 338);
+            this.raterSelectedCheckBox.Name = "raterSelectedCheckBox";
+            this.raterSelectedCheckBox.Size = new System.Drawing.Size(99, 17);
+            this.raterSelectedCheckBox.TabIndex = 13;
+            this.raterSelectedCheckBox.Text = "Rater Selection";
+            this.raterSelectedCheckBox.UseVisualStyleBackColor = true;
             // 
             // viewerSelectedCheckBox
             // 
             this.viewerSelectedCheckBox.AutoSize = true;
-            this.viewerSelectedCheckBox.Location = new System.Drawing.Point(6, 269);
+            this.viewerSelectedCheckBox.Location = new System.Drawing.Point(6, 315);
             this.viewerSelectedCheckBox.Name = "viewerSelectedCheckBox";
             this.viewerSelectedCheckBox.Size = new System.Drawing.Size(105, 17);
             this.viewerSelectedCheckBox.TabIndex = 12;
@@ -307,7 +322,7 @@
             // targetSelectedCheckBox
             // 
             this.targetSelectedCheckBox.AutoSize = true;
-            this.targetSelectedCheckBox.Location = new System.Drawing.Point(6, 315);
+            this.targetSelectedCheckBox.Location = new System.Drawing.Point(6, 361);
             this.targetSelectedCheckBox.Name = "targetSelectedCheckBox";
             this.targetSelectedCheckBox.Size = new System.Drawing.Size(104, 17);
             this.targetSelectedCheckBox.TabIndex = 11;
@@ -329,7 +344,7 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(255, 553);
+            this.cancelButton.Location = new System.Drawing.Point(255, 594);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 10;
@@ -347,22 +362,35 @@
             this.label1.Text = "Destination Folder";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // filesCheckBox
+            // taskerNameCheckBox
             // 
-            this.filesCheckBox.AutoSize = true;
-            this.filesCheckBox.Location = new System.Drawing.Point(6, 409);
-            this.filesCheckBox.Name = "filesCheckBox";
-            this.filesCheckBox.Size = new System.Drawing.Size(50, 17);
-            this.filesCheckBox.TabIndex = 26;
-            this.filesCheckBox.Text = "Files:";
-            this.filesCheckBox.UseVisualStyleBackColor = true;
-            this.filesCheckBox.CheckedChanged += new System.EventHandler(this.filesCheckBox_CheckedChanged);
+            this.taskerNameCheckBox.AutoSize = true;
+            this.taskerNameCheckBox.Checked = true;
+            this.taskerNameCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.taskerNameCheckBox.Location = new System.Drawing.Point(6, 246);
+            this.taskerNameCheckBox.Name = "taskerNameCheckBox";
+            this.taskerNameCheckBox.Size = new System.Drawing.Size(90, 17);
+            this.taskerNameCheckBox.TabIndex = 27;
+            this.taskerNameCheckBox.Text = "Tasker Name";
+            this.taskerNameCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // monitorNameCheckBox
+            // 
+            this.monitorNameCheckBox.AutoSize = true;
+            this.monitorNameCheckBox.Checked = true;
+            this.monitorNameCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.monitorNameCheckBox.Location = new System.Drawing.Point(6, 269);
+            this.monitorNameCheckBox.Name = "monitorNameCheckBox";
+            this.monitorNameCheckBox.Size = new System.Drawing.Size(92, 17);
+            this.monitorNameCheckBox.TabIndex = 28;
+            this.monitorNameCheckBox.Text = "Monitor Name";
+            this.monitorNameCheckBox.UseVisualStyleBackColor = true;
             // 
             // SessionExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 588);
+            this.ClientSize = new System.Drawing.Size(424, 629);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.dataExportGroupBox);
@@ -389,10 +417,10 @@
         private System.Windows.Forms.FolderBrowserDialog folderDialog;
         public System.Windows.Forms.CheckBox screenshotCheckBox;
         private System.Windows.Forms.GroupBox dataExportGroupBox;
-        public System.Windows.Forms.CheckBox judgeNameCheckBox;
+        public System.Windows.Forms.CheckBox raterNameCheckBox;
         public System.Windows.Forms.CheckBox viewerNameCheckBox;
         public System.Windows.Forms.CheckBox sessionNameCheckBox;
-        public System.Windows.Forms.CheckBox judgeSelectedCheckBox;
+        public System.Windows.Forms.CheckBox raterSelectedCheckBox;
         public System.Windows.Forms.CheckBox viewerSelectedCheckBox;
         public System.Windows.Forms.CheckBox targetSelectedCheckBox;
         public System.Windows.Forms.CheckBox targetIDCheckBox;
@@ -410,5 +438,7 @@
         private System.Windows.Forms.CheckBox geomagneticCheckBox;
         private System.Windows.Forms.CheckBox arvCheckBox;
         private System.Windows.Forms.CheckBox filesCheckBox;
+        public System.Windows.Forms.CheckBox monitorNameCheckBox;
+        public System.Windows.Forms.CheckBox taskerNameCheckBox;
     }
 }

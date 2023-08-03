@@ -309,8 +309,8 @@ namespace OpenPsiLabWinForms.Views
 
             viewerSelect1Button.Enabled = false;
             viewerSelect2Button.Enabled = false;
-            judgeSelect1Button.Enabled = false;
-            judgeSelect2Button.Enabled = false;
+            raterSelect1Button.Enabled = false;
+            raterSelect2Button.Enabled = false;
             getTargetButton.Enabled = false;
             getImagesButton.Enabled = true;
 
@@ -337,7 +337,7 @@ namespace OpenPsiLabWinForms.Views
             sessionNameTextBox.Text = string.Empty;
             targetTextBox.Text = string.Empty;
             viewerNameTextBox.Text = string.Empty;
-            judgeNameTextBox.Text = string.Empty;
+            raterNameTextBox.Text = string.Empty;
 
             notesButton.Enabled = false;
             addFilesButton.Enabled = false;
@@ -391,10 +391,10 @@ namespace OpenPsiLabWinForms.Views
             setControlDeselected(viewerSelect1Button);
             viewerSelect2Button.Text = "Viewer Select";
             setControlDeselected(viewerSelect2Button);
-            judgeSelect1Button.Text = "Judge Select";
-            setControlDeselected(judgeSelect1Button);
-            judgeSelect2Button.Text = "Judge Select";
-            setControlDeselected(judgeSelect2Button);
+            raterSelect1Button.Text = "Rater Select";
+            setControlDeselected(raterSelect1Button);
+            raterSelect2Button.Text = "Rater Select";
+            setControlDeselected(raterSelect2Button);
         }
 
         private void setSelectionControlsSelected()
@@ -420,25 +420,25 @@ namespace OpenPsiLabWinForms.Views
                     setControlDeselected(viewerSelect1Button);
                 }
 
-                if (rvSession.JudgeSelectedIndex == 1)
+                if (rvSession.RaterSelectedIndex == 1)
                 {
-                    judgeSelect1Button.Text = "Judge Selected";
-                    judgeSelect2Button.Text = "Judge Select";
-                    setControlSelected(judgeSelect1Button);
-                    setControlDeselected(judgeSelect2Button);
+                    raterSelect1Button.Text = "Rater Selected";
+                    raterSelect2Button.Text = "Rater Select";
+                    setControlSelected(raterSelect1Button);
+                    setControlDeselected(raterSelect2Button);
                 }
-                else if (rvSession.JudgeSelectedIndex == 2)
+                else if (rvSession.RaterSelectedIndex == 2)
                 {
-                    judgeSelect2Button.Text = "Judge Selected";
-                    judgeSelect1Button.Text = "Judge Select";
-                    setControlSelected(judgeSelect2Button);
-                    setControlDeselected(judgeSelect1Button);
+                    raterSelect2Button.Text = "Rater Selected";
+                    raterSelect1Button.Text = "Rater Select";
+                    setControlSelected(raterSelect2Button);
+                    setControlDeselected(raterSelect1Button);
                 }
 
                 viewerSelect1Button.Enabled = true;
                 viewerSelect2Button.Enabled = true;
-                judgeSelect1Button.Enabled = true;
-                judgeSelect2Button.Enabled = true;
+                raterSelect1Button.Enabled = true;
+                raterSelect2Button.Enabled = true;
             }
         }
 
@@ -462,20 +462,20 @@ namespace OpenPsiLabWinForms.Views
             enableSaveButton();
         }
 
-        private void judgeSelect1Button_Click(object sender, EventArgs e)
+        private void raterSelect1Button_Click(object sender, EventArgs e)
         {
-            setJudgeSelection(1);
+            setRaterSelection(1);
         }
 
-        private void judgeSelect2Button_Click(object sender, EventArgs e)
+        private void raterSelect2Button_Click(object sender, EventArgs e)
         {
-            setJudgeSelection(2);
+            setRaterSelection(2);
         }
 
-        private void setJudgeSelection(int selectedIndex)
+        private void setRaterSelection(int selectedIndex)
         {
-            rvSession.JudgeSelectedDateTimeLocal = DateTimeOffset.Now;
-            rvSession.JudgeSelectedIndex = selectedIndex;
+            rvSession.RaterSelectedDateTimeLocal = DateTimeOffset.Now;
+            rvSession.RaterSelectedIndex = selectedIndex;
             selectionCheckBox.Enabled = true;
             setTargetTextBox();
             setSelectionControlsSelected();
@@ -631,8 +631,8 @@ namespace OpenPsiLabWinForms.Views
                 pictureBox2.Visible = false;
                 viewerSelect1Button.Enabled = false;
                 viewerSelect2Button.Enabled = false;
-                judgeSelect1Button.Enabled = false;
-                judgeSelect2Button.Enabled = false;
+                raterSelect1Button.Enabled = false;
+                raterSelect2Button.Enabled = false;
                 setAllSelectionControlsDeslected();
                 selectionCheckBox.Enabled = false;
                 return;
@@ -645,8 +645,8 @@ namespace OpenPsiLabWinForms.Views
                     pictureBox2.Visible = true;
                     viewerSelect1Button.Enabled = true;
                     viewerSelect2Button.Enabled = true;
-                    judgeSelect1Button.Enabled = true;
-                    judgeSelect2Button.Enabled = true;
+                    raterSelect1Button.Enabled = true;
+                    raterSelect2Button.Enabled = true;
                     if (selectionCheckBox.Checked)
                     {
                         setSelectionControlsSelected();
@@ -749,8 +749,8 @@ namespace OpenPsiLabWinForms.Views
             selectionCheckBox.Checked = false;
             viewerSelect1Button.Enabled = false;
             viewerSelect2Button.Enabled = false;
-            judgeSelect1Button.Enabled = false;
-            judgeSelect2Button.Enabled = false;
+            raterSelect1Button.Enabled = false;
+            raterSelect2Button.Enabled = false;
             if (rvSession.ImagesArray != null)
             {
                 if (rvSession.Image1.UUID != Guid.Empty ||
@@ -764,8 +764,8 @@ namespace OpenPsiLabWinForms.Views
                     idsCheckBox.Checked = false;
                     idsCheckBox.BackColor = oplConfig.HighlightColor;
 
-                    if (rvSession.Image1.IsJudgeSelected || rvSession.Image1.IsViewerSelected ||
-                        rvSession.Image2.IsJudgeSelected || rvSession.Image2.IsViewerSelected)
+                    if (rvSession.Image1.IsRaterSelected || rvSession.Image1.IsViewerSelected ||
+                        rvSession.Image2.IsRaterSelected || rvSession.Image2.IsViewerSelected)
                     { selectionCheckBox.BackColor = oplConfig.HighlightColor; }
                     else { selectionCheckBox.BackColor = default(Color); }
                         
@@ -780,8 +780,8 @@ namespace OpenPsiLabWinForms.Views
                         pictureBox2.Image = rvSession.Image2.ImageBitmap;
                     }
 
-                    if (rvSession.Image1.IsViewerSelected || rvSession.Image1.IsJudgeSelected
-                                                          || rvSession.Image2.IsViewerSelected || rvSession.Image2.IsJudgeSelected)
+                    if (rvSession.Image1.IsViewerSelected || rvSession.Image1.IsRaterSelected
+                                                          || rvSession.Image2.IsViewerSelected || rvSession.Image2.IsRaterSelected)
                     {
                         selectionCheckBox.Enabled = false;
                     }
@@ -793,9 +793,11 @@ namespace OpenPsiLabWinForms.Views
 
             //Setup textboxes
             viewerNameTextBox.Text = rvSession.ViewerName;
-            judgeNameTextBox.Text = rvSession.JudgeName;
+            raterNameTextBox.Text = rvSession.RaterName;
             targetTextBox.Text = rvSession.TargetID;
             sessionNameTextBox.Text = rvSession.Name;
+            taskerNameTextBox.Text = rvSession.TaskerName;
+            monitorNameTextBox.Text = rvSession.MonitorName;
 
             //Setup target button
             if (rvSession.Targeted == "true")
@@ -829,7 +831,7 @@ namespace OpenPsiLabWinForms.Views
 
 
             viewerNameTextBox.Enabled = true;
-            judgeNameTextBox.Enabled = true;
+            raterNameTextBox.Enabled = true;
             targetTextBox.Enabled = true;
             sessionNameTextBox.Enabled = true;
 
@@ -921,6 +923,19 @@ namespace OpenPsiLabWinForms.Views
             rvSession.ViewerName = viewerNameTextBox.Text;
         }
 
+        private void taskerNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (rvSession == null) return;
+            rvSession.TaskerName = taskerNameTextBox.Text;
+        }
+
+        private void monitorNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (rvSession == null) return;
+            rvSession.MonitorName = monitorNameTextBox.Text;
+        }
+
+
         private void saveToFolderAndDB()
         {
             rvSession.SessionType = typeOfSession;
@@ -934,10 +949,10 @@ namespace OpenPsiLabWinForms.Views
                 sessionController.SessionPracticeSaveToDatabase(rvSession);
         }
 
-        private void judgeNameTextBox_TextChanged(object sender, EventArgs e)
+        private void raterNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (rvSession == null) return;
-            rvSession.JudgeName = judgeNameTextBox.Text;
+            rvSession.RaterName = raterNameTextBox.Text;
         }
 
         private void arvCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -1082,7 +1097,7 @@ namespace OpenPsiLabWinForms.Views
             targetCheckBox.Enabled = false;
 
             viewerNameTextBox.Enabled = true;
-            judgeNameTextBox.Enabled = true;
+            raterNameTextBox.Enabled = true;
             targetTextBox.Enabled = true;
             sessionNameTextBox.Enabled = true;
 
@@ -1244,5 +1259,7 @@ namespace OpenPsiLabWinForms.Views
 
 
         }
+
+        
     }
 }

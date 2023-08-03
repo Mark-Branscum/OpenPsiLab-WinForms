@@ -71,9 +71,9 @@ namespace OpenPsiLabWinForms.Views
                 targetImageRadioButton.Checked = ep.TargetImage;
                 sessionNameCheckBox.Checked = ep.SessionName;
                 viewerNameCheckBox.Checked = ep.ViewerName;
-                judgeNameCheckBox.Checked = ep.JudgeName;
+                raterNameCheckBox.Checked = ep.RaterName;
                 viewerSelectedCheckBox.Checked = ep.ViewerSelected;
-                judgeSelectedCheckBox.Checked = ep.JudgeSelected;
+                raterSelectedCheckBox.Checked = ep.RaterSelected;
                 targetSelectedCheckBox.Checked = ep.TargetSelected;
                 screenshotCheckBox.Checked = ep.Screenshot;
                 notesCheckBox.Checked = ep.Notes;
@@ -165,9 +165,11 @@ namespace OpenPsiLabWinForms.Views
             exportConfig.TargetImage = targetImageRadioButton.Checked;
             exportConfig.SessionName = sessionNameCheckBox.Checked;
             exportConfig.ViewerName = viewerNameCheckBox.Checked;
-            exportConfig.JudgeName = judgeNameCheckBox.Checked;
+            exportConfig.TaskerName = taskerNameCheckBox.Checked;
+            exportConfig.MonitorName = monitorNameCheckBox.Checked; 
+            exportConfig.RaterName = raterNameCheckBox.Checked;
             exportConfig.ViewerSelected = viewerSelectedCheckBox.Checked;
-            exportConfig.JudgeSelected = judgeSelectedCheckBox.Checked;
+            exportConfig.RaterSelected = raterSelectedCheckBox.Checked;
             exportConfig.TargetSelected = targetSelectedCheckBox.Checked;
             exportConfig.Screenshot = screenshotCheckBox.Checked;
             exportConfig.Notes = notesCheckBox.Checked;
@@ -242,8 +244,14 @@ namespace OpenPsiLabWinForms.Views
             if (ec.ViewerName == false)
                 newSP.ViewerName = string.Empty;
 
-            if (ec.JudgeName == false)
-                newSP.JudgeName = string.Empty;
+            if (ec.RaterName == false)
+                newSP.RaterName = string.Empty;
+
+            if (ec.TaskerName == false)
+                newSP.TaskerName = string.Empty;
+
+            if (ec.MonitorName == false)
+                newSP.MonitorName = string.Empty;
 
             if (ec.ViewerSelected == false)
             {
@@ -251,10 +259,10 @@ namespace OpenPsiLabWinForms.Views
                 newSP.ViewerSelectedTarget = string.Empty;
             }
             
-            if (ec.JudgeSelected == false)
+            if (ec.RaterSelected == false)
             {
-                newSP.JudgeSelectedIndex = -1;
-                newSP.JudgeSelectedTarget = string.Empty;
+                newSP.RaterSelectedIndex = -1;
+                newSP.RaterSelectedTarget = string.Empty;
             }
 
             if (ec.TargetSelected == false)
@@ -284,9 +292,9 @@ namespace OpenPsiLabWinForms.Views
             noImagesRadioButton.Checked = true;
             sessionNameCheckBox.Checked = true;
             viewerNameCheckBox.Checked = true;
-            judgeNameCheckBox.Checked = true;
+            raterNameCheckBox.Checked = true;
             viewerSelectedCheckBox.Checked = false;
-            judgeSelectedCheckBox.Checked = false;
+            raterSelectedCheckBox.Checked = false;
             targetSelectedCheckBox.Checked = false;
             screenshotCheckBox.Checked = false;
             notesCheckBox.Checked = false;
