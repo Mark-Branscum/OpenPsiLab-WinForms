@@ -1,4 +1,4 @@
-#>>> WARNING! <<< This project contains security vulnerabilities and is not currently being maintained! This project is being provided as a reference for others who like to use parts of the code base.  I do not recommend that anyone run this software in its current form.
+>>> WARNING! <<< This project contains security vulnerabilities and is not currently being maintained! It is being provided as a reference for others who might like to use parts of the code base.  I do not recommend that anyone run this software in its current form.
 
 ## Welcome to Open Psi Lab 
 
